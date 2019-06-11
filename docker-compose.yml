@@ -1,0 +1,79 @@
+version: '3.3'
+services:
+
+  hpds:
+    image: dbmi/pic-sure-hpds-nhanes:18.1-Quickstart
+    restart: always
+    networks:
+      - copdgene-hpds
+    expose:
+      - 8080
+    env_file:
+      - hpds.env
+
+  wildfly:
+    image: jboss/wildfly:15.0.1.Final
+    volumes:
+      - /usr/local/docker-config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
+      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+    networks:
+      - copdgene-hpds
+    restart: always
+    entrypoint: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug 0.0.0.0:8787
+    expose:
+      - 8787
+    user: root
+    volumes:
+      - /usr/local/docker-config/wildfly/modules/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
+      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+    depends_on:
+      - copy-picsure2-war
+      - copy-picsureauth-war
+    ports:
+      - 8080:8080
+      - 9990:9990
+      - 8787:8787
+
+  httpd:
+    image: local-picsure-httpd:latest
+    build:
+      context: httpd
+      dockerfile: Dockerfile
+    volumes:
+      - /usr/local/docker-config/httpd/psama/settings/:/usr/local/apache2/htdocs/psama/settings/
+      - /usr/local/docker-config/httpd/hpds/settings/:/usr/local/apache2/htdocs/hpds/settings/
+    networks:
+      - copdgene-hpds
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+
+  copy-picsure2-war:
+    image: picsure:latest
+    user: root
+    volumes:
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
+    networks:
+      - copdgene-hpds
+    entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
+
+  copy-picsureauth-war:
+    image: picsureauth:latest
+    user: root
+    volumes:
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
+    networks:
+      - copdgene-hpds
+    entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
+
+networks:
+  copdgene-hpds:
+    external:
+      name: copdgene-hpds
+
+volumes:
+  picsure-data:
+  picsure-auth-data:
