@@ -43,7 +43,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /usr/local/docker-config/httpd/psama/settings/:/usr/local/apache2/htdocs/psama/settings/
-      - /usr/local/docker-config/httpd/hpds/settings/:/usr/local/apache2/htdocs/hpds/settings/
+      - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
     networks:
       - copdgene-hpds
     restart: always
