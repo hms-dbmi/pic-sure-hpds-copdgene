@@ -12,7 +12,7 @@ services:
       - hpds.env
 
   wildfly:
-    image: jboss/wildfly:15.0.1.Final
+    image: jboss/wildfly:17.0.0.Final
     volumes:
       - /usr/local/docker-config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
       - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
@@ -37,9 +37,9 @@ services:
       - 8787:8787
 
   httpd:
-    image: local-picsure-httpd:latest
+    # image: local-picsure-httpd:latest
     build:
-      context: httpd
+      context: ./httpd
       dockerfile: Dockerfile
     volumes:
       - /usr/local/docker-config/httpd/psama/settings/:/usr/local/apache2/htdocs/psama/settings/
@@ -52,7 +52,7 @@ services:
       - 443:443
 
   copy-picsure2-war:
-    image: picsure:latest
+    image: dbmi/picsure2:${picsure2_version}
     user: root
     volumes:
       - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
@@ -61,7 +61,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: picsureauth:latest
+    image: dbmi/pic-sure-auth-services:${picsure_auth_version}
     user: root
     volumes:
       - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/

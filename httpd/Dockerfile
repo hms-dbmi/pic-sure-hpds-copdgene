@@ -26,4 +26,5 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs/picsureui
 COPY src/main/javascript/picsureui-overrides /usr/local/apache2/htdocs/picsureui/overrides
+COPY src/main/javascript/hpds /usr/local/apache2/htdocs/picsureui/hpds
 COPY src/main/javascript/psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
