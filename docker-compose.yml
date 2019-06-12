@@ -44,6 +44,7 @@ services:
     volumes:
       - /usr/local/docker-config/httpd/psama/settings/:/usr/local/apache2/htdocs/psama/settings/
       - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
+      - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
     networks:
       - copdgene-hpds
     restart: always
@@ -71,8 +72,8 @@ services:
 
 networks:
   copdgene-hpds:
-    external:
-      name: copdgene-hpds
+  #  external:
+  #    name: copdgene-hpds
 
 volumes:
   picsure-data:

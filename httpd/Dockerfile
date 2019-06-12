@@ -1,6 +1,6 @@
 #FROM dbmi/pic-sure-hpds-ui:18.1-Quickstart-v2 AS pic-sure-ui
-FROM pic-sure-ui-udn:latest AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:master_4bbe3c0 as pic-sure-auth-ui
+FROM dbmi/pic-sure-hpds-ui:18.1-Quickstart-v2 AS pic-sure-ui
+FROM dbmi/pic-sure-auth-ui:picsure301_1fe4e7a as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed
