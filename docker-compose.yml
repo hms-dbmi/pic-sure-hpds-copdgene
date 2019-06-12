@@ -35,6 +35,8 @@ services:
       - 8080:8080
       - 9990:9990
       - 8787:8787
+    env_file:
+      - ${ENV_FILE}
 
   httpd:
     # image: local-picsure-httpd:latest
