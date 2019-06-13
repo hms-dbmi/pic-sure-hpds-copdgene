@@ -2,12 +2,20 @@ version: '3.3'
 services:
 
   hpds:
-    image: dbmi/pic-sure-hpds-nhanes:18.1-Quickstart
+    image: dbmi/pic-sure-hpds:jason-refactoring-project-structure_395332a
+    entrypoint: java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms1g -Xmx1g -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=10000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000 "-DALL_IDS_CONCEPT=\\000_UDN ID\\"  "-DID_CUBE_NAME=\\000_UDN ID\\"
+    volumes:
+      - /scratch/s3_migration/:/opt/local/phenocube
+      - /scratch/s3_migration/:/opt/local/hpds
+      - /scratch/s3_migration/:/opt/local/hpds/variants
+      - /scratch/s3_migration/:/opt/local/hpds/all
     restart: always
     networks:
       - copdgene-hpds
     expose:
       - 8080
+    ports:
+      - 8080:8080
     env_file:
       - hpds.env
 
@@ -24,15 +32,11 @@ services:
     expose:
       - 8787
     user: root
-    volumes:
-      - /usr/local/docker-config/wildfly/modules/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
-      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
-      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     depends_on:
       - copy-picsure2-war
       - copy-picsureauth-war
     ports:
-      - 8080:8080
+      - 8081:8080
       - 9990:9990
       - 8787:8787
     env_file:
@@ -44,7 +48,7 @@ services:
       context: ./httpd
       dockerfile: Dockerfile
     volumes:
-      - /usr/local/docker-config/httpd/psama/settings/:/usr/local/apache2/htdocs/psama/settings/
+      - /usr/local/docker-config/httpd/psamaui/settings/:/usr/local/apache2/htdocs/psamaui/settings/
       - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
       - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
     networks:
