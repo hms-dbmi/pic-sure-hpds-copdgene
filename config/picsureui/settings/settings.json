@@ -1,0 +1,12 @@
+{
+  "resources":[
+		{
+			"id" : "COPDGene",
+			"name" : "COPDGene",
+			"basePath" : "/picsure",
+			"findPath" : "/PIC-SURE/search"
+		}
+		],
+  "helpLink": "about:blank",
+  "advancedSearchLink": ""
+}

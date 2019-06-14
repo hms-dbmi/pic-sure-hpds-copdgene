@@ -1,12 +1,9 @@
-#FROM dbmi/pic-sure-hpds-ui:18.1-Quickstart-v2 AS pic-sure-ui
-FROM local-pic-sure-ui-copdgene:latest AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:picsure301_1fe4e7a as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed
 
 # Replace virtual host config file with ours
-COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
+COPY httpd/httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 
 # Enable virtual hosting config file
 RUN sed -i '/^#Include conf.extra.httpd-vhosts.conf/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
@@ -23,8 +20,9 @@ RUN sed -i '/^#LoadModule rewrite_module modules\/mod_rewrite.so/s/^#//' ${HTTPD
 RUN sed -i '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
-COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
-COPY --from=pic-sure-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs/picsureui
-COPY src/main/javascript/picsureui-overrides /usr/local/apache2/htdocs/picsureui/overrides
-COPY src/main/javascript/hpds /usr/local/apache2/htdocs/picsureui/hpds
-COPY src/main/javascript/psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
+COPY target/pic-sure-ui/webjars/META-INF/resources/webjars/ /usr/local/apache2/htdocs/webjars
+COPY target/pic-sure-ui /usr/local/apache2/htdocs
+COPY src/main/javascript/overrides /usr/local/apache2/htdocs/overrides
+COPY src/main/javascript/picsureui /usr/local/apache2/htdocs/picsureui
+COPY src/main/resources /usr/local/apache2/htdocs/settings
+COPY src/main/pic-sure-ui-patches/* /usr/local/apache2/htdocs/
