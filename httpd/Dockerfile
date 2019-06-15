@@ -24,5 +24,5 @@ RUN sed -i '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^
 RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
-COPY --from=pic-sure-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs/picsureui
+COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
 COPY psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
