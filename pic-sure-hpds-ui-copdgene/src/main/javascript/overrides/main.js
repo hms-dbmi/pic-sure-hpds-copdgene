@@ -31,15 +31,7 @@ define([],function(){
 			"filter/constrainFilterMenuCategories":"picsureui/constrainFilterMenuCategories",
 			"filter/constrainFilterMenuGenetics":"picsureui/constrainFilterMenuGenetics",
 			"filter/constrainFilterMenuVariantInfo":"picsureui/constrainFilterMenuVariantInfo",
-			"jstree":"webjars/jstree/3.3.7/jstree",
-			"footer/footer":"picsureui/footer/footer",
-      "picSure/resourceMeta":"picsureui/picSure/resourceMeta",
-      "common/styles":"picsureui/common/styles",
-      "auth/login":"picsureui/auth/login",
-      "common/spinner":"picsureui/common/spinner",
-      "picSure/queryCache":"picsureui/picSure/queryCache",
-      "filter/suggestion":"picsureui/filter/suggestion",
-      "common/notification": "picsureui/common/notification"
+			"jstree":"webjars/jstree/3.3.7/jstree"
 //			"auth/login":"picsureui/login"
 		},
 		shim: {
