@@ -7,6 +7,7 @@
 			"findPath" : "/PIC-SURE/search"
 		}
 		],
+  "picSureResourceId":"",
   "helpLink": "about:blank",
   "advancedSearchLink": ""
 }

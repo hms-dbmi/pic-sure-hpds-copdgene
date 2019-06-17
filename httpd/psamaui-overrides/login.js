@@ -22,11 +22,11 @@ define(["picSure/settings", "text!overrides/not_authorized.hbs", "handlebars"], 
 		 * they couldn't use it to access the system anyway.
 		 */
 		postRender: function(){
-			$('#frmAuth0Login').on("DOMNodeInserted", function(event){
-				$('.a0-googleplus').hide();
-			});
+			// $('#frmAuth0Login').on("DOMNodeInserted", function(event){
+			// 	$('.a0-googleplus').hide();
+			// });
 
-			$('.a0-iconlist').children().get(0).innerHTML = 'Please click the button below to log in.';
+			// $('.a0-iconlist').children().get(0).innerHTML = 'Please click the button below to log in.';
 
 		},
 

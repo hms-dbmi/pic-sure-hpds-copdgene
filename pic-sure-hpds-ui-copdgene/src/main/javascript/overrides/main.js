@@ -4,14 +4,14 @@ define([],function(){
 			/*
 			 *  Any module in the app can be overridden here. Just add a path entry for
 			 *  the desired module and point it at your new module.
-			 *  
+			 *
 			 *  This is used in the GRIN project to override the queryBuilder enabling
 			 *  support for the gNOME PIC-SURE RI.
-			 *  
+			 *
 			 *  This must be a valid requirejs config call.
-			 *  
+			 *
 			 *  For example to override the queryBuilder and the login page:
-			 *  
+			 *
 			 *  "picSure/queryBuilder" : "path/in/src/main/javascript/newQueryBuilder",
 			 *  "common/login" : "path/in/src/main/javascript/newLogin"
 			 */
@@ -32,6 +32,14 @@ define([],function(){
 			"filter/constrainFilterMenuGenetics":"picsureui/constrainFilterMenuGenetics",
 			"filter/constrainFilterMenuVariantInfo":"picsureui/constrainFilterMenuVariantInfo",
 			"jstree":"webjars/jstree/3.3.7/jstree",
+			"footer/footer":"picsureui/footer/footer",
+      "picSure/resourceMeta":"picsureui/picSure/resourceMeta",
+      "common/styles":"picsureui/common/styles",
+      "auth/login":"picsureui/auth/login",
+      "common/spinner":"picsureui/common/spinner",
+      "picSure/queryCache":"picsureui/picSure/queryCache",
+      "filter/suggestion":"picsureui/filter/suggestion",
+      "common/notification": "picsureui/common/notification"
 //			"auth/login":"picsureui/login"
 		},
 		shim: {
@@ -39,5 +47,5 @@ define([],function(){
 				deps: ["jquery"]
 			}
 		}
-	});	
+	});
 });
