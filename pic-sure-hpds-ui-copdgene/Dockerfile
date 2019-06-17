@@ -23,5 +23,5 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 COPY target/pic-sure-ui/webjars/META-INF/resources/webjars/ /usr/local/apache2/htdocs/picsureui/webjars
 COPY target/pic-sure-ui /usr/local/apache2/htdocs
 COPY src/main/javascript/overrides /usr/local/apache2/htdocs/picsureui/overrides
-COPY src/main/javascript/picsureui/* /usr/local/apache2/htdocs/picsureui
-COPY src/main/pic-sure-ui-patches/* /usr/local/apache2/htdocs/
+COPY src/main/javascript/picsureui/* /usr/local/apache2/htdocs/picsureui/picsureui/
+COPY src/main/pic-sure-ui-patches/* /usr/local/apache2/htdocs/picsureui/
