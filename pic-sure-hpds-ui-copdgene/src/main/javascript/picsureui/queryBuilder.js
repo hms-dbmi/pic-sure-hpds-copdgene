@@ -5,7 +5,6 @@ define([ "text!../settings/settings.json" ], function(settings){
 			query:{
 			categoryFilters: {},
 			numericFilters:{},
-			requiredFields:["\\000_UDN ID\\"],
 			variantInfoFilters:[
 				{
 					categoryVariantInfoFilters:{},
@@ -34,16 +33,16 @@ define([ "text!../settings/settings.json" ], function(settings){
 							min = one;
 							max = two;
 						}
-						query.query.numericFilters[filter.get("searchTerm")] = 
+						query.query.numericFilters[filter.get("searchTerm")] =
 						{
-								min: min, 
+								min: min,
 								max: max
 						}
 					}else if(filter.attributes.valueType==="STR"){
 						if(filter.get("constrainParams").get("constrainValueOne")==="Any Value"){
 							query.query.requiredFields.push(filter.get("searchTerm"));
 						}else{
-							query.query.categoryFilters[filter.get("searchTerm")] = [filter.get("constrainParams").get("constrainValueOne")];							
+							query.query.categoryFilters[filter.get("searchTerm")] = [filter.get("constrainParams").get("constrainValueOne")];
 						}
 					}else if(filter.attributes.valueType==="VARIANT"){
 						var zygosities = [];
