@@ -1,4 +1,4 @@
-define(["settings/settings","common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/ontology", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
+define(["text!../settings/settings.json","common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/ontology", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
 		function(settings, spinner, dataSelection, outputTemplate, resourceMeta, ontology, queryCache, BB, HBS, overrides){
 	var outputModelDefaults = {
 			totalPatients : 0,
