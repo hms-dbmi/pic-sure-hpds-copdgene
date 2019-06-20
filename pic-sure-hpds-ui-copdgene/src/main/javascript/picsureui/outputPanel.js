@@ -1,5 +1,5 @@
-define(["common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/ontology", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
-		function(spinner, dataSelection, outputTemplate, resourceMeta, ontology, queryCache, BB, HBS, overrides){
+define(["settings/settings","common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/ontology", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
+		function(settings, spinner, dataSelection, outputTemplate, resourceMeta, ontology, queryCache, BB, HBS, overrides){
 	var outputModelDefaults = {
 			totalPatients : 0,
 			spinnerClasses: "spinner-medium spinner-medium-center ",
@@ -23,7 +23,7 @@ define(["common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hb
 		}
 	});
 
-	var mapPuiForResource = (typeof overrides.mapPuiForResource == 'function') ? 
+	var mapPuiForResource = (typeof overrides.mapPuiForResource == 'function') ?
 			overrides.mapPuiForResource
 			: function(pui, picsureInstance){
 				return pui.replace(/(\/[\w-]+){4}/, picsureInstance.basePui);
@@ -64,11 +64,11 @@ define(["common/spinner", "picsureui/dataSelection", "text!output/outputPanel.hb
 
 					// make a safe deep copy of the incoming query so we don't modify it
 					var query = JSON.parse(JSON.stringify(incomingQuery));
-					query.resourceUUID = "8e8c7ed0-87ea-4342-b8da-f939e46bac26";
+					query.resourceUUID = JSON.parse(settings).picSureResourceId;
 					query.resourceCredentials = {};
 					query.query.expectedResultType="COUNT";
 					this.model.set("query", query);
-					
+
 					if(this.dataSelection){
 						this.dataSelection.updateQuery(query);
 						this.dataSelection.render();
