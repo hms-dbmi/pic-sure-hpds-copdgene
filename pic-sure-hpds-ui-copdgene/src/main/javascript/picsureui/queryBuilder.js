@@ -5,6 +5,7 @@ define([ "text!../settings/settings.json" ], function(settings){
 			query:{
 			categoryFilters: {},
 			numericFilters:{},
+			requiredFields:{},
 			variantInfoFilters:[
 				{
 					categoryVariantInfoFilters:{},
