@@ -25,6 +25,8 @@ define(["backbone","handlebars", "text!header/header.hbs", "overrides/header", "
 				success: function(response){
 					if(response.privileges.includes("ADMIN") || response.privileges.includes("SUPER_ADMIN")){
 						$('#admin-btn', this.$el).show();
+					} else {
+						$('#user-profile-btn', this.$el).show();
 					}
 				}.bind(this),
 				error: function(response){
