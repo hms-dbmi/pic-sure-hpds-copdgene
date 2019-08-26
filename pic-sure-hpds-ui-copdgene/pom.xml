@@ -3,28 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>edu.harvard.hms.dbmi.avillach.picsure.hpds</groupId>
-	<artifactId>pic-sure-hpds-ui</artifactId>
+	<groupId>edu.harvard.hms.dbmi.avillach.picsure</groupId>
+	<artifactId>pic-sure-hpds-ui-precisionlink</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>pic-sure-hpds-ui</name>
+	<name>pic-sure-hpds-ui-precisionlink</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>edu.harvard.hms.dbmi.avillach.picsure</groupId>
-			<artifactId>pic-sure-ui</artifactId>
+			<groupId>edu.harvard.hms.dbmi.avillach.picsure.hpds</groupId>
+			<artifactId>pic-sure-hpds-ui</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jstree</artifactId>
-			<version>3.3.7</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>popper.js</artifactId>
-		    <version>1.14.6</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -44,7 +34,7 @@
 							<artifactItems>
 								<artifactItem>
 									<groupId>edu.harvard.hms.dbmi.avillach.picsure</groupId>
-									<artifactId>pic-sure-ui</artifactId>
+									<artifactId>pic-sure-hpds-ui</artifactId>
 									<version>1.0-SNAPSHOT</version>
 									<type>zip</type>
 									<classifier>webapp</classifier>
@@ -52,18 +42,6 @@
 									<outputDirectory>${project.build.directory}</outputDirectory>
 								</artifactItem>
 							</artifactItems>
-						</configuration>
-					</execution>
-					<execution>
-						<id>unpack-dependencies</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>unpack-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/pic-sure-ui/webjars</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
 						</configuration>
 					</execution>
 				</executions>

@@ -1,10 +1,6 @@
 PIC-SURE API UI Extension
 =========================
 
-
-Note: This project is heavily modified from the original IRCT based PIC-SURE UI to support HPDS.
-
-
 The archetype that generated this project allows you to customize common
 functionality and styling of the PIC-SURE UI project.
 

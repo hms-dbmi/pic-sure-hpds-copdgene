@@ -1,6 +1,5 @@
 define([], function(){
 	return {
-		client_id : "1OZuafVJDR5UTTj0h8hWUyezpBuZHUpp",
 		/*
 		 * This allows you to build any authorization logic you wish.
 		 * 

@@ -104,7 +104,7 @@
      left: auto !important;
 }
  .logo-img {
-     max-height: 90px;
+     max-height: 80px;
      max-width: 275px;
 }
  #pic-sure-instances {
@@ -324,7 +324,10 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
-#footer-content{	
+input[type=number] {
+    -moz-appearance:textfield;
+}
+#footer-content{
     background-image: linear-gradient(white, #ddd);
     padding-top: .5em;
     padding-bottom: .5em;

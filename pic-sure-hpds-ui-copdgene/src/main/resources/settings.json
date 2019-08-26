@@ -1,13 +1,15 @@
 {
-  "resources":[
+  	"resources":[
 		{
-			"id" : "COPDGene",
-			"name" : "COPDGene",
+			"id" : "PrecisionLink",
+			"name" : "PrecisionLink",
 			"basePath" : "/picsure",
-			"findPath" : "/PIC-SURE/search"
+			"basePui" : "/i2b2-wildfly-count-only/Demo", 
+			"resourcePath" : "/i2b2-wildfly-count-only"
 		}
 		],
-  "picSureResourceId":"",
-  "helpLink": "about:blank",
-  "advancedSearchLink": ""
+  	"helpLink": "mailto:",
+	"advancedSearchLink": "/transmart/login/callback_processor",
+	"pdfLink":"about:blank",
+	"timeout": 900
 }
