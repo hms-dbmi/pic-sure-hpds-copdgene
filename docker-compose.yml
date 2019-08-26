@@ -52,6 +52,7 @@ services:
       - /usr/local/docker-config/httpd/psamaui/settings/:/usr/local/apache2/htdocs/psamaui/settings/
       - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
       - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
+      - /usr/local/docker-config/httpd/static:/usr/local/apache2/htdocs/picsureui/static
     networks:
       - copdgene-hpds
     restart: always
