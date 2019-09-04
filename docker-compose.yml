@@ -20,37 +20,38 @@ services:
 #    env_file:
 #      - hpds.env
 
-#  wildfly:
-#    image: jboss/wildfly:17.0.0.Final
-#    volumes:
-#      - /usr/local/docker-config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
-#      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
-#      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
-#    networks:
-#      - copdg#ene-hpds
-#    restart: always
-#    entrypoint: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug 0.0.0.0:8787
-#    expose:
-#      - 8787
-#    user: root
-#    depends_on:
-#      - copy-picsure2-war
-#      - copy-picsureauth-war
-#    ports:
-#      - 8081:8080
-#      - 9990:9990
-#      - 8787:8787
-#    env_file:
-#      - ${ENV_FILE}
+  wildfly:
+    image: jboss/wildfly:17.0.0.Final
+    volumes:
+      - /usr/local/docker-config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
+      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+    networks:
+      - copdgene-hpds
+    restart: always
+    entrypoint: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug 0.0.0.0:8787
+    expose:
+      - 8787
+    user: root
+    depends_on:
+      - copy-picsure2-war
+      - copy-picsureauth-war
+    ports:
+      - 8081:8080
+      - 9990:9990
+      - 8787:8787
+    env_file:
+      - ${ENV_FILE}
 
-  pic-sure-hpds-ui-copdgene:
+  natehttpd:
     build:
       context: ./pic-sure-hpds-ui-copdgene
       dockerfile: Dockerfile
     volumes:
       - /usr/local/docker-config/httpd/psamaui/settings/:/usr/local/apache2/htdocs/psamaui/settings/
-      - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
+#      - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
       - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
+      - ./config/picsureui/settings:/usr/local/apache2/htdocs/picsureui/settings
       - ./static:/usr/local/apache2/htdocs/picsureui/static
       - ./static/startup.js:/usr/local/apache2/htdocs/picsureui/common/startup.js
       - ./static/ontology.js:/usr/local/apache2/htdocs/picsureui/picSure/ontology.js

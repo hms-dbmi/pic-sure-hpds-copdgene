@@ -6,6 +6,7 @@ RUN apk add --update openssl sed
 
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
+#COPY ../config/picsureui/settings/settings.json ${HTTPD_PREFIX}/htdocs/picsureui/settings/settings.json
 
 # Enable virtual hosting config file
 RUN sed -i '/^#Include conf.extra.httpd-vhosts.conf/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf

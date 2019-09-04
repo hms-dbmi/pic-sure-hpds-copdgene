@@ -1,4 +1,4 @@
-FROM local-pic-sure-hpds-ui:latest AS pic-sure-ui
+FROM dbmi/pic-sure-hpds-ui:master.e95d19e AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:picsure354.2844d7d as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
@@ -24,4 +24,4 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
-COPY psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
+#COPY psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
