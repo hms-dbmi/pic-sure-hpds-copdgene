@@ -25,3 +25,4 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
 COPY --from=pic-sure-hpds-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
 COPY src/main/webapp/picsureui/overrides /usr/local/apache2/htdocs/picsureui/overrides
+COPY src/main/webapp/picsureui/floatheader /usr/local/apache2/htdocs/picsureui/floatheader
