@@ -20,6 +20,7 @@
 
 body {
     background-color: #f4f4f6;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 #header-content {
@@ -47,4 +48,19 @@ body {
 
 .logo-img {
     padding-top: 10px;
+}
+
+#patient-count-box {
+    background-color: rgb(223, 238, 255);
+    border-radius: 4px;
+}
+
+#pic-sure-instances {
+    width: 90%;
+}
+
+.filter-search-row {
+    background-color: #6d6e70;
+    padding: 10px;
+    border-radius: 4px;
 }

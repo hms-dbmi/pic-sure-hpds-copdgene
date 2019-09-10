@@ -41,3 +41,24 @@ define(["backbone","handlebars", "text!header/header.hbs", "overrides/header", "
 		View : new headerView({})
 	};
 });
+
+
+/*  Set the FavIcon for this site */
+(function() {
+    var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = 'static/DS_logo_circle.ico';
+    document.getElementsByTagName('head')[0].appendChild(link);
+})();
+
+
+/*  Add font */
+
+(function() {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap';
+    document.getElementsByTagName('head')[0].appendChild(link);
+})();
+
