@@ -17,7 +17,8 @@ define([],function(){
 			 */
 
 			"header/header" : "floatheader/floatheader",
-			"filter/constrainFilterMenu" : "overrides/constrainFilterMenu"
+			"filter/constrainFilterMenu" : "overrides/filter/constrainFilterMenu",
+			"filter/filter" : "overrides/filter/filter"
 		}
 	});	
 });
