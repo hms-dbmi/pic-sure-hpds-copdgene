@@ -16,7 +16,8 @@ define([],function(){
 			 *  "common/login" : "path/in/src/main/javascript/newLogin"
 			 */
 
-			"header/header" : "floatheader/floatheader"
+			"header/header" : "floatheader/floatheader",
+			"filter/constrainFilterMenu" : "overrides/constrainFilterMenu"
 		}
 	});	
 });
