@@ -60,7 +60,33 @@ body {
 }
 
 .filter-search-row {
-    background-color: #6d6e70;
+    background-color: rgb(223, 238, 255);
     padding: 10px;
     border-radius: 4px;
+    margin-left: 0;
+    margin-right: 0;
 }
+
+.filter-list-entry {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.constrain-filter button {
+    width: unset;
+}
+
+.constrain-filter-btn {
+    min-width: 160px;
+}
+
+.edit {
+    padding: 6px 6px;
+    width: unset;
+}
+
+.search-tooltip-help-icon {
+    display: none;
+}
+
+
