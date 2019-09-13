@@ -76,7 +76,7 @@ return (indexOfTerm*1000) + differenceInLength;
  var searchCache = {};
 
  var dictionary = function(query, success, error){
-/* 	return $.ajax({
+ 	return $.ajax({
  		url: window.location.origin + '/picsure/search/' + JSON.parse(settings).picSureResourceId,
  		data: JSON.stringify({"query":query}),
  		headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
@@ -86,7 +86,7 @@ return (indexOfTerm*1000) + differenceInLength;
  		error: error,
  		dataType: "json"
  	});
- */};
+ };
  var counts = function(tree, allConcepts, crossCounts){
  	var total = 0;
  	var folderCount = 0;
@@ -148,7 +148,7 @@ var allInfoColumnsQuery = {
 			expectedResultType: "INFO_COLUMN_LISTING"
 		}};
 
-/*$.ajax({
+$.ajax({
 	url: window.location.origin + "/picsure/query/sync",
 	type: 'POST',
 	headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
@@ -163,7 +163,7 @@ var allInfoColumnsQuery = {
 		console.log("error retrieving info columns");
 		console.log(response);
 	}.bind(this)
-});*/
+});
 
  var cachedTree;
 

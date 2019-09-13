@@ -7,14 +7,14 @@ define(["filter/filterList", "header/header", "footer/footer", "text!../settings
 			}
 			var session = JSON.parse(sessionStorage.getItem("session"));
 			if(!session || !session.token){
-//				window.location = redirection_url;
+				window.location = redirection_url;
 			}
-/*			$.ajax({
+			$.ajax({
 				url: window.location.origin + '/picsure/info/resources',
 				headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
 				contentType: 'application/json',
 				type:'GET',
-				success: function(){*/
+				success: function(){
 					console.log("login successful");
 					$.ajaxSetup({
 						error: function(event, jqxhr){
@@ -32,7 +32,7 @@ define(["filter/filterList", "header/header", "footer/footer", "text!../settings
 					filterList.init();
 					var outputPanel = output.View;
 					outputPanel.render();
-					$('#query-results').append(outputPanel.$el);/*
+					$('#query-results').append(outputPanel.$el);
 				},
 				error: function(jqXhr){
 					if(jqXhr.status === 401){
@@ -43,7 +43,7 @@ define(["filter/filterList", "header/header", "footer/footer", "text!../settings
 					}
 				},
 				dataType: "json"
-			});*/
+			});
 		}
 	});
 

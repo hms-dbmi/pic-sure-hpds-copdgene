@@ -11,5 +11,6 @@
   	"helpLink": "mailto:",
 	"advancedSearchLink": "/transmart/login/callback_processor",
 	"pdfLink":"about:blank",
-	"timeout": 900
+	"timeout": 900,
+        "picSureResourceId": "b6ef7b1a-56f6-11e9-8958-0242c0a83007"
 }
