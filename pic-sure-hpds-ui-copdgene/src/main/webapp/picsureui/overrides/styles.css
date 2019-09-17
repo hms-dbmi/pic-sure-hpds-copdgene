@@ -59,6 +59,10 @@ body {
     width: 90%;
 }
 
+.value-operator-range-label {
+	width: unset;
+}
+
 .filter-search-row {
     background-color: rgb(223, 238, 255);
     padding: 10px;
@@ -72,12 +76,32 @@ body {
     margin-right: 0;
 }
 
+.constrain-filter {
+   margin-left: 0;
+}
+
 .constrain-filter button {
     width: unset;
 }
 
+.constrain-filter input {
+    padding: 3px 3px;
+    text-align: center;
+}
+
 .constrain-filter-btn {
     min-width: 160px;
+}
+
+.constrain-range-separator {
+    width: unset;
+    top: 10px;
+    float:left;
+}
+
+.value-type-select, .constrain-type-select {
+	float:left;
+	width: auto
 }
 
 .edit {

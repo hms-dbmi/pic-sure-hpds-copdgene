@@ -53,11 +53,13 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			"click .edit": "editFilter",
 			"click .search-btn": "searchBtnHandler",
 			"keyup input.search-box" : "enterButtonEventHandler",
-			"click .constrain-dropdown-menu li a" : "onConstrainTypeSelect",
+		//	"click .constrain-dropdown-menu li a" : "onConstrainTypeSelect",
+			"change .constrain-type-select" : "onConstrainTypeSelect", 
 			"click .constrain-category-dropdown-menu li a" : "onConstrainCategorySelect",
 			"click .constrain-genetics-dropdown-menu li a" : "onConstrainGeneticsSelect",
 			"click .constrain-info-dropdown-menu li a" : "onConstrainVariantInfoSelect",
-			"click .value-dropdown-menu li a" : "onValueTypeSelect",
+		//	"click .value-dropdown-menu li a" : "onValueTypeSelect",
+			"change .value-type-select" : "onValueTypeSelect",
 			"focusout .constrain-value" : "onConstrainValuesChange",
 			"click .constrain-apply-btn" : "onConstrainApplyButtonClick"
 		},
@@ -156,16 +158,23 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		},
 		onConstrainTypeSelect: function (event) {
 		
-			console.log("Testing");
-			var dropdownElement = $("."+event.target.parentElement.parentElement.attributes['aria-labelledby'].value, this.$el);
-			dropdownElement.text(event.target.text);
-			dropdownElement.append('<span class="glyphicon glyphicon-chevron-down blue"></span>');
-			var constrainByValue = $('.value-constraint-btn', this.$el).text().trim() != "No value";
+			var constrainByValue = event.target.value != "No value";
 			// update both models
 			this.model.set("constrainByValue", constrainByValue)
 			this.model.get("constrainParams").set("constrainByValue", constrainByValue);
 
-			this.updateConstrainFilterMenu()
+			if(constrainByValue){
+ 				$('.value-operator', this.$el).removeClass("hidden")
+                                $('.value-operator', this.$el).show();
+				$('.value-operator-range-label', this.$el).removeClass("hidden")
+                                $('.value-operator-range-label', this.$el).show();
+ 				var valueOperator = $(".value-type-select", this.$el).val();
+				this.updateConstrainValueVisibility(valueOperator);				
+			 }  else {
+				$('.value-operator').hide();
+				$('.value-operator-range-label', this.$el).hide();
+			}
+
 		},
 		onConstrainGeneticsSelect: function(event) {
 			var dropdownElement = $("."+event.target.parentElement.parentElement.attributes['aria-labelledby'].value, this.$el);
@@ -211,21 +220,47 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			this.updateConstrainFilterMenu()
 		},
 		onValueTypeSelect : function (event) {
-			var dropdownElement = $("."+event.target.parentElement.parentElement.attributes['aria-labelledby'].value, this.$el);
-			dropdownElement.text(event.target.text);
-			dropdownElement.append('<span class="glyphicon glyphicon-chevron-down blue"></span>');
 
-			var valueOperator = event.target.attributes['value'].value;
-
+			var valueOperator = event.target.value;
 			var constrainModel = this.model.get("constrainParams");
 			constrainModel.set("valueOperator", valueOperator);
-			constrainModel.set("valueOperatorLabel", event.target.text);
+			constrainModel.set("valueOperatorLabel", event.target[event.target.selectedIndex].text);
 			constrainModel.set("isValueOperatorBetween", valueOperator === "BETWEEN")
-			this.updateConstrainFilterMenu();
+     			this.updateConstrainValueVisibility(valueOperator);
 		},
 		onConstrainValuesChange : function (event) {
 			this.model.get("constrainParams").set("constrainValueOne", $('.constrain-value-one', this.$el).val());
 			this.model.get("constrainParams").set("constrainValueTwo", $('.constrain-value-two', this.$el).val());
+		},
+		updateConstrainValueVisibility : function(valueOperator) {
+
+                       if( valueOperator == "BETWEEN" ){
+                                $('.constrain-range-separator', this.$el).removeClass("hidden")
+                                $('.constrain-range-separator', this.$el).show();
+                                $('.constrain-value-one', this.$el).removeClass("hidden");
+                                $('.constrain-value-one', this.$el).show();
+                                $('.constrain-value-two', this.$el).removeClass("hidden");
+                                $('.constrain-value-two', this.$el).show();
+                        } else {
+                                $('.constrain-range-separator', this.$el).hide();
+                        }
+
+                        if( valueOperator == "LT" ){
+                                $('.constrain-value-one', this.$el).removeClass("hidden");
+                                $('.constrain-value-one', this.$el).show();
+
+                                $('.constrain-value-two', this.$el).hide();
+				$('.constrain-value-two', this.$el).val("");
+				this.model.get("constrainParams").set("constrainValueOne", "");
+                        } else if ( valueOperator == "GT" ){
+                                $('.constrain-value-one', this.$el).hide();
+				$('.constrain-value-one', this.$el).val("");
+
+                                $('.constrain-value-two', this.$el).removeClass("hidden");
+                                $('.constrain-value-two', this.$el).show();
+				this.model.get("constrainParams").set("constrainValueTwo", "");
+                        }
+
 		},
 		updateConstrainFilterMenu : function() {
 			if(this.model.attributes.concept.columnDataType==="CONTINUOUS"){
@@ -287,8 +322,8 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 						constrains.get("valueOperatorLabel")
 						+ " "
 						+ constrains.get("constrainValueOne")
-						+ (constrains.get("isValueOperatorBetween") ?
-								" - " + constrains.get("constrainValueTwo") : "");
+						+ (constrains.get("isValueOperatorBetween") ? " - " : "")
+						+ constrains.get("constrainValueTwo");
 						$('.search-value', this.$el).html(this.model.get("searchValue") + ', ' + searchParam);
 					}
 				}

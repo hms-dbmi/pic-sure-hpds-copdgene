@@ -29,7 +29,7 @@ define([ "text!../settings/settings.json" ], function(settings){
 						if(filter.attributes.constrainParams.attributes.valueOperator==="LT"){
 							max = one;
 						}else if(filter.attributes.constrainParams.attributes.valueOperator==="GT"){
-							min = one;
+							min = two;
 						}else{
 							min = one;
 							max = two;
