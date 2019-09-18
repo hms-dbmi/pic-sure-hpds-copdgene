@@ -18,7 +18,9 @@ define([],function(){
 
 			"header/header" : "floatheader/floatheader",
 			"filter/constrainFilterMenu" : "overrides/filter/constrainFilterMenu",
+			"filter/constrainFilterMenuCategories" : "overrides/filter/constrainFilterMenuCategories",
 			"filter/filter" : "overrides/filter/filter",
+			"filter/searchResult" : "overrides/filter/searchResult",
 			"picSure/queryBuilder" : "overrides/query/queryBuilder"
 		}
 	});	
