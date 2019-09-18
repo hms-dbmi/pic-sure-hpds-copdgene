@@ -44,7 +44,12 @@ define([ "text!../settings/settings.json" ], function(settings){
 							|| filter.get("constrainParams").get("constrainValueOne")===""){
 							query.query.requiredFields.push(filter.get("searchTerm"));
 						}else{
-							query.query.categoryFilters[filter.get("searchTerm")] = [filter.get("constrainParams").get("constrainValueOne")];
+							//Categorical filters are already an array
+							if ( filter.get("constrainParams").get("columnDataType") == "CATEGORICAL" ){
+								query.query.categoryFilters[filter.get("searchTerm")] = filter.get("constrainParams").get("constrainValueOne");
+							} else{
+								query.query.categoryFilters[filter.get("searchTerm")] = [filter.get("constrainParams").get("constrainValueOne")];
+							}
 						}
 					}else if(filter.attributes.valueType==="VARIANT"){
 						var zygosities = [];

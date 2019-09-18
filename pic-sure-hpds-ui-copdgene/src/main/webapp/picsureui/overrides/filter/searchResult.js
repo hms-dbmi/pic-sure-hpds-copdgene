@@ -88,9 +88,9 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                 }
                 this.filterView.model.attributes.constrainParams.attributes.constrainByValue=true;
                 this.filterView.updateConstrainFilterMenu();
-                if(this.model.attributes.columnDataType==="CATEGORICAL"){
-                    $('.constrain-apply-btn', this.filterView.$el).click();
-                }
+//                if(this.model.attributes.columnDataType==="CATEGORICAL"){
+//                    $('.constrain-apply-btn', this.filterView.$el).click();
+//                }
             },
             getValueType : function(dataType)
             {

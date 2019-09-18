@@ -1,19 +1,18 @@
-<div>TESTING TESTING</div>
-
 <div class="constrain-row row">
-    <div class="col-md-3 constrain-filter-btn">
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle value-constraint-category-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{#if constrainValueOne}}{{constrainValueOne}}{{else}}Any Value{{/if}}
-                <span class="glyphicon glyphicon-chevron-down blue"></span>
-            </button>
-            <ul class="constrain-category-dropdown-menu dropdown-menu" aria-labelledby="value-constraint-category-btn">
-                <li><a class="dropdown-item" href="#">Any Value</a></li>
-                {{#each metadata.categoryValues}}
-                    <li><a class="dropdown-item" href="#" value="{{this}}">{{this}}</a></li>
-               	{{/each}}
-            </ul>
-        </div>
+    <div class="col-md-3 constrain-filter-btn resizable-select">
+	<div class="constrain-filter-label">Available Values</div>
+	<input  class="form-control category-filter" placeholder="Filter..." value="" ></input>
+	<select class="form-control available-categories"    multiple="" >
+		{{#each metadata.categoryValues}}	    
+		<option class="selectable-category-item" >{{this}}</option>
+		{{/each}}
+	</select>
+    </div>
+    <div class="col-md-3 constrain-filter-btn resizable-select">
+	<div class="constrain-filter-label">Selected Values</div>
+	<select class="form-control selected-categories" multiple="">
+	
+	</select>
     </div>
      <div class="constrain-search-button col-md-1">
         <span class="btn search-btn constrain-apply-btn">Run</span>
