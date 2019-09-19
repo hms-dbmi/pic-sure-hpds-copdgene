@@ -44,16 +44,13 @@ services:
 
   httpd:
     build:
-      context: ./pic-sure-hpds-ui-copdgene
+      context: ./httpd
       dockerfile: Dockerfile
     volumes:
       - /usr/local/docker-config/httpd/psamaui/settings/:/usr/local/apache2/htdocs/psamaui/settings/
-#      - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
+      - /usr/local/docker-config/httpd/picsureui/settings/:/usr/local/apache2/htdocs/picsureui/settings/
       - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
-      - ./config/picsureui/settings:/usr/local/apache2/htdocs/picsureui/settings
-      - ./static:/usr/local/apache2/htdocs/picsureui/static
-      - ./static/startup.js:/usr/local/apache2/htdocs/picsureui/common/startup.js
-      - ./static/ontology.js:/usr/local/apache2/htdocs/picsureui/picSure/ontology.js
+      - /usr/local/docker-config/httpd/static:/usr/local/apache2/htdocs/picsureui/static
     networks:
       - copdgene-hpds
     restart: always
