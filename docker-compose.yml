@@ -54,7 +54,7 @@ services:
       - ./config/picsureui/settings:/usr/local/apache2/htdocs/picsureui/settings
       - ./static:/usr/local/apache2/htdocs/picsureui/static
       - ./static/startup.js:/usr/local/apache2/htdocs/picsureui/common/startup.js
-      - ./static/ontology.js:/usr/local/apache2/htdocs/picsureui/picSure/ontology.js
+  #    - ./static/ontology.js:/usr/local/apache2/htdocs/picsureui/picSure/ontology.js
     networks:
       - copdgene-hpds
     restart: always

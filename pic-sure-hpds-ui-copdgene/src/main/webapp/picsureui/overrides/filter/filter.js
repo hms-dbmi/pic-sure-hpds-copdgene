@@ -62,7 +62,8 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			"click .constrain-apply-btn" : "onConstrainApplyButtonClick",
 			"input .category-filter" : "onCategoryFilterChange",
 			"click .select-all" : "selectAllCategories",
-			"click .select-none" : "clearCategorySelection"
+			"click .select-none" : "clearCategorySelection",
+			"change .category-filter-restriction" : "updateCategoryFilterVisibility"
 		},
 		reset: function () {
 			this.model.clear().set(this.model.defaults);
@@ -207,6 +208,14 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			}
 			this.model.attributes.valueType="INFO";
 			this.updateConstrainFilterMenu();
+		},
+		updateCategoryFilterVisibility: function (event){
+			if( $(".category-filter-restriction", this.$el).val() == "RESTRICT"){
+				$(".category-filter-lists", this.$el).removeClass("hidden");
+				$(".category-filter-lists", this.$el).show();
+			} else {
+				$(".category-filter-lists", this.$el).hide();
+			}
 		},
                 selectAllCategories: function(event) {
 			var existingItems = $(".selected-categories > option");
