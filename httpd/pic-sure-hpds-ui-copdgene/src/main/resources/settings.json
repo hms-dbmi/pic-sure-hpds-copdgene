@@ -4,7 +4,7 @@
 			"id" : "PrecisionLink",
 			"name" : "PrecisionLink",
 			"basePath" : "/picsure",
-			"basePui" : "/i2b2-wildfly-count-only/Demo", 
+			"basePui" : "/i2b2-wildfly-count-only/Demo",
 			"resourcePath" : "/i2b2-wildfly-count-only"
 		}
 		],
