@@ -4,13 +4,12 @@
 			"id" : "PrecisionLink",
 			"name" : "PrecisionLink",
 			"basePath" : "/picsure",
-			"basePui" : "/i2b2-wildfly-count-only/Demo", 
+			"basePui" : "/i2b2-wildfly-count-only/Demo",
 			"resourcePath" : "/i2b2-wildfly-count-only"
 		}
 		],
   	"helpLink": "mailto:",
 	"advancedSearchLink": "/transmart/login/callback_processor",
 	"pdfLink":"about:blank",
-	"timeout": 900,
-        "picSureResourceId": "b6ef7b1a-56f6-11e9-8958-0242c0a83007"
+	"timeout": 900
 }

@@ -6,7 +6,6 @@ RUN apk add --update openssl sed
 
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
-#COPY ../config/picsureui/settings/settings.json ${HTTPD_PREFIX}/htdocs/picsureui/settings/settings.json
 
 # Enable virtual hosting config file
 RUN sed -i '/^#Include conf.extra.httpd-vhosts.conf/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
@@ -25,4 +24,3 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
 COPY --from=pic-sure-hpds-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
 COPY src/main/webapp/picsureui/overrides /usr/local/apache2/htdocs/picsureui/overrides
-COPY src/main/webapp/picsureui/floatheader /usr/local/apache2/htdocs/picsureui/floatheader
