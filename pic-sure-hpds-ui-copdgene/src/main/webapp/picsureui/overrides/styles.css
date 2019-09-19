@@ -50,13 +50,20 @@ body {
     padding-top: 10px;
 }
 
-.resizable-select {
+.resizable-select-div {
     resize: both;
     overflow: auto;
     border: 1px solid #6d6e70;
     padding: 5px;
     min-height: 175px;
     width: 40%;
+/*    display: table-cell;  */
+    display: flex;
+    flex-direction: column;
+}
+
+.multi-select-box {
+    flex: 1;
 }
 
 #patient-count-box {

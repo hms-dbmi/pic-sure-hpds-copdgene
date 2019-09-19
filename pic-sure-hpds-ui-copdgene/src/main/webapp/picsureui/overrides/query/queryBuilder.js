@@ -41,7 +41,7 @@ define([ "text!../settings/settings.json" ], function(settings){
 						}
 					}else if(filter.attributes.valueType==="STR"){
 						if(filter.get("constrainParams").get("constrainValueOne")==="Any Value"
-							|| filter.get("constrainParams").get("constrainValueOne")===""){
+							|| filter.get("constrainParams").get("constrainValueOne").length == 0){
 							query.query.requiredFields.push(filter.get("searchTerm"));
 						}else{
 							//Categorical filters are already an array

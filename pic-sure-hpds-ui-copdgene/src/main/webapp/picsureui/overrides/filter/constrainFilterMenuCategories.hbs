@@ -1,18 +1,24 @@
 <div class="constrain-row row">
-    <div class="col-md-3 constrain-filter-btn resizable-select">
+    <div class="col-md-3 constrain-filter-btn resizable-select-div">
 	<div class="constrain-filter-label">Available Values</div>
 	<input  class="form-control category-filter" placeholder="Filter..." value="" ></input>
-	<select class="form-control available-categories"    multiple="" >
+	<select class="form-control available-categories multi-select-box"    multiple="" >
 		{{#each metadata.categoryValues}}	    
 		<option class="selectable-category-item" >{{this}}</option>
 		{{/each}}
 	</select>
+	<div class="select-all btn btn-default">
+                    <a>Select All <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                </div>
     </div>
-    <div class="col-md-3 constrain-filter-btn resizable-select">
+    <div class="col-md-3 constrain-filter-btn resizable-select-div">
 	<div class="constrain-filter-label">Selected Values</div>
-	<select class="form-control selected-categories" multiple="">
+	<select class="form-control selected-categories multi-select-box" multiple="">
 	
 	</select>
+     <div class="select-none btn btn-default">
+                    <a><i class="fa fa-angle-double-left" aria-hidden="true"></i> Select None</a>
+                </div>
     </div>
      <div class="constrain-search-button col-md-1">
         <span class="btn search-btn constrain-apply-btn">Run</span>

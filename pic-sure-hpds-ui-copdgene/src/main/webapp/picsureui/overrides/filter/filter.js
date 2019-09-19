@@ -61,6 +61,8 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			"focusout .constrain-value" : "onConstrainValuesChange",
 			"click .constrain-apply-btn" : "onConstrainApplyButtonClick",
 			"input .category-filter" : "onCategoryFilterChange",
+			"click .select-all" : "selectAllCategories",
+			"click .select-none" : "clearCategorySelection"
 		},
 		reset: function () {
 			this.model.clear().set(this.model.defaults);
@@ -206,6 +208,56 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			this.model.attributes.valueType="INFO";
 			this.updateConstrainFilterMenu();
 		},
+                selectAllCategories: function(event) {
+			var existingItems = $(".selected-categories > option");
+                        
+                        //handle special case where no itmes in 'selected' control; no logic needed
+                        if(existingItems.length == 0){
+                                $(".selected-categories").append($(".available-categories > option"));
+                                return;
+                        }
+                        
+                        var currentItem = existingItems.first();
+                        $(".available-categories > option").each(function() {
+                                //comparing text, but one is a func because jquery.each() is different than first()/next()
+                                
+                                if(this.text < currentItem.text()){
+                                        $(this).insertBefore(currentItem);
+                                } else {
+                                        while(currentItem.next().length > 0 && this.text > currentItem.next().text()){
+                                                currentItem = currentItem.next();
+                                        }
+                                        
+                                        $(this).insertAfter(currentItem);
+                                }
+                        });
+
+                },
+                clearCategorySelection: function(event) {
+			var existingItems = $(".available-categories > option");
+			
+			//handle special case where no itmes in 'available' control; no logic needed
+			if(existingItems.length == 0){
+				$(".available-categories").append($(".selected-categories > option"));
+				return;
+			}
+
+			var currentItem = existingItems.first();
+			$(".selected-categories > option").each(function() {
+				//comparing text, but one is a func because jquery.each() is different than first()/next()
+
+				if(this.text < currentItem.text()){
+					$(this).insertBefore(currentItem);
+				} else {
+					while(currentItem.next().length > 0 && this.text > currentItem.next().text()){
+						currentItem = currentItem.next();
+					} 
+
+					$(this).insertAfter(currentItem);
+				}
+			});
+
+                },
 		onConstrainCategorySelect: function(event) {
 			//clear selection styling	
 			event.target.selected = false;
