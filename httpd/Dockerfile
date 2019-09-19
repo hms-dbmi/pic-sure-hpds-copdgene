@@ -22,7 +22,10 @@ RUN sed -i '/^#LoadModule rewrite_module modules\/mod_rewrite.so/s/^#//' ${HTTPD
 RUN sed -i '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
+# copy pic-sure-hpds-ui and pic-sure-auth-ui base repos first
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
 
+# then copy overrides
 COPY psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
+COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/overrides /usr/local/apache2/htdocs/picsureui/overrides
