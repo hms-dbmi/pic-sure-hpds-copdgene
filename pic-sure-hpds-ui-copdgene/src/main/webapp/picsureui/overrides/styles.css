@@ -50,6 +50,16 @@ body {
     padding-top: 10px;
 }
 
+.category-restriction-type-row {
+    display:flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+
+.category-filter-restriction-container {
+    flex: 1;
+}
+
 .resizable-select-div {
     resize: both;
     overflow: auto;
@@ -77,6 +87,14 @@ body {
 
 .value-operator-range-label {
 	width: unset;
+}
+
+.filter-qualifier {
+    display: contents;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .filter-search-row {
@@ -123,6 +141,15 @@ body {
 .edit {
     padding: 6px 6px;
     width: unset;
+   float:right;
+} 
+
+.delete {
+    float: right;
+}
+
+.change-constraint {
+    float: right;
 }
 
 .search-tooltip-help-icon {

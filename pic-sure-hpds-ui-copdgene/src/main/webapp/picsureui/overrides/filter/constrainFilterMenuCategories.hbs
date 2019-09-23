@@ -1,19 +1,19 @@
 <div class="constrain-row row">
     <div class="category-restriction-type-row">
-	<div class="">
-		<select type="radio" class="category-filter-restriction">
+	<div class="category-filter-restriction-container">
+		<select type="radio" class="form-control category-filter-restriction">
 			<option value="ANY">Allow Any Value (exclude missing data)</option>
-			<option value="RESTRICT">Restrict By Value</option>
+			<option value="RESTRICT" {{#if constrainValueOne.length}}selected{{/if}} >Restrict By Value</option>
 
 		</select>
 	</div>
-	 <div class="constrain-search-button col-md-1">
+	 <div class="constrain-search-button">
             <span class="btn search-btn constrain-apply-btn">Run</span>
          </div>
 
     </div>
 
-    <div class="category-filter-lists hidden">
+    <div class="category-filter-lists {{#unless constrainValueOne.length}}hidden{{/unless}}">
 	    <div class="col-md-3 constrain-filter-btn resizable-select-div">
 		<div class="constrain-filter-label">Available Values</div>
 		<input  class="form-control category-filter" placeholder="Filter..." value="" ></input>

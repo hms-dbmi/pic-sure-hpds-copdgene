@@ -50,6 +50,7 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			"hidden.bs.dropdown .autocomplete-suggestions .dropdown" : "onAutocompleteSelect",
 			"click .filter-dropdown-menu li a" : "onDropdownSelect",
 			"click .delete": "destroyFilter",
+			"click .change-constraint": "changeConstraint",
 			"click .edit": "editFilter",
 			"click .search-btn": "searchBtnHandler",
 			"keyup input.search-box" : "enterButtonEventHandler",
@@ -149,8 +150,11 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			$('.search-tabs', this.$el).html('');
 		},
 		editFilter : function(){
-			this.$el.removeClass("saved");
+	//		this.$el.removeClass("saved");
 			this.updateConstrainFilterMenu();
+		},
+		changeConstraint : function (){
+			this.$el.removeClass("saved"); 
 		},
 		destroyFilter: function () {
 			this.undelegateEvents();
@@ -360,15 +364,17 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 
 		},
 		updateConstrainFilterMenu : function() {
+
+			var filterEl = $('.constrain-filter', this.$el);
 			if(this.model.attributes.concept.columnDataType==="CONTINUOUS"){
-				$('.constrain-filter', this.$el).html(this.constrainFilterMenuTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
+				filterEl.html(this.constrainFilterMenuTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
 			}else if (this.model.attributes.concept.columnDataType==="VARIANT"){
-				$('.constrain-filter', this.$el).html(this.constrainFilterMenuGeneticsTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
-				$('.constrain-filter', this.$el).show();
+				filterEl.html(this.constrainFilterMenuGeneticsTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
+				filterEl.show();
 			}else if (this.model.attributes.concept.columnDataType==="INFO"){
-				$('.constrain-filter', this.$el).html(this.constrainFilterMenuVariantInfoTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
+				filterEl.html(this.constrainFilterMenuVariantInfoTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
 			}else {
-				$('.constrain-filter', this.$el).html(this.constrainFilterMenuCategoriesTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
+				filterEl.html(this.constrainFilterMenuCategoriesTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
 				//Move the selected items to the right box
 				var selectedCategories = this.model.get("constrainParams").get("constrainValueOne"); 
 				$(".available-categories > option").each(function() {
@@ -377,6 +383,8 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 					}
                                 }); 
 			}
+
+			filterEl.show();
 		},
 		validateConstrainFilterFields : function () {
 			var isValid = true;
@@ -411,12 +419,16 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			console.log(this.model.attributes.concept.columnDataType);
 			//iterate over all selected elements and turn them into an array
 			if(this.model.attributes.concept.columnDataType == "CATEGORICAL"){
-				var selectedCategories = [];
-				$(".selected-categories > option").each(function() {
-					selectedCategories.push(this.text);
-				});
+				if($(".category-filter-restriction").val() == "RESTRICT"){
+					var selectedCategories = [];
+					$(".selected-categories > option").each(function() {
+						selectedCategories.push(this.text);
+					});
 
-				this.model.get("constrainParams").set("constrainValueOne", selectedCategories);
+					this.model.get("constrainParams").set("constrainValueOne", selectedCategories);
+				} else {
+					this.model.get("constrainParams").set("constrainValueOne",[]);
+				}
 			}	
 
 		},
