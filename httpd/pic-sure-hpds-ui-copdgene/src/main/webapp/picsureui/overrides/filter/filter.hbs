@@ -12,22 +12,26 @@
             </div-->
         </div>
         <div class="filter-saved">
-            <div class="filter-qualifier col-md-9">
-                <div class="filter-result-entry filter-result-saved">
-                    <span class="autocomplete-category">{{#if category}}{{category}}{{else}}Variant{{/if}}</span>
-                    <br></br>
-                    <div>
-                        <span class="search-value">{{searchValue}}</span>
-                    </div>
-                </div>
-            </div>
-                <div class="delete btn btn-default col-md-2">
-                    <a href="#">delete</a>
-                </div>
-                <div class="edit btn btn-default col-md-1">
-                    <a href="#">edit</a>
-                </div>
-        </div>
+		<div class="edit btn btn-default col-md-1">
+		    <a>edit</a>
+		</div>
+		<div class="change-constraint btn btn-default col-md-2">
+		    <a>change</a>
+		</div>
+		<div class="delete btn btn-default col-md-2">
+		    <a>delete</a>
+		</div>
+
+		<div class="filter-qualifier">
+		    <div class="filter-result-entry filter-result-saved">
+			<span class="autocomplete-category">{{#if category}}{{category}}{{else}}Variant{{/if}}</span>
+			<br></br>
+			<div>
+			    <span class="search-value">{{searchValue}}</span>
+			</div>
+		    </div>
+		</div>
+	</div>
     </div>
     <div class="constrain-filter"></div>
 	<div class="search-tabs"></div>
