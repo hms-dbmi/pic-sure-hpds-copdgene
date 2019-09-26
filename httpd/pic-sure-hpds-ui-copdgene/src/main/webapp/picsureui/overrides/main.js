@@ -20,6 +20,7 @@ define([],function(){
 			"filter/constrainFilterMenu" : "overrides/filter/constrainFilterMenu",
 			"filter/constrainFilterMenuCategories" : "overrides/filter/constrainFilterMenuCategories",
 			"filter/filter" : "overrides/filter/filter",
+			"filter/searchHelpTooltip" : "overrides/filter/searchHelpTooltip", 
 			"filter/searchResult" : "overrides/filter/searchResult",
 			"picSure/queryBuilder" : "overrides/query/queryBuilder"
 		}
