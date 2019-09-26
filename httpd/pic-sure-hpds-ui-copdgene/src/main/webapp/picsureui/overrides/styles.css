@@ -105,6 +105,10 @@ body {
     margin-right: 0;
 }
 
+.search-box, .filter-search-box {
+    width: 80%;
+}
+
 .filter-list-entry {
     margin-left: 0;
     margin-right: 0;
@@ -153,7 +157,5 @@ body {
 }
 
 .search-tooltip-help-icon {
-    display: none;
+    float: left;
 }
-
-
