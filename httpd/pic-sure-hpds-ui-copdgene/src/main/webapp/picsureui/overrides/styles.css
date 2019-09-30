@@ -159,3 +159,9 @@ body {
 .search-tooltip-help-icon {
     float: left;
 }
+
+#prepare-btn {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 25;
+}

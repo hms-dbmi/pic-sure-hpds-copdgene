@@ -1,5 +1,5 @@
-define(["text!../settings/settings.json","common/spinner", "output/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/ontology", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
-		function(settings, spinner, dataSelection, outputTemplate, resourceMeta, ontology, queryCache, BB, HBS, overrides){
+define(["text!../settings/settings.json","common/spinner", "output/dataSelection", "text!output/outputPanel.hbs","picSure/resourceMeta", "picSure/queryCache", "backbone", "handlebars", "overrides/outputPanel"],
+		function(settings, spinner, dataSelection, outputTemplate, resourceMeta, queryCache, BB, HBS, overrides){
 	var outputModelDefaults = {
 			totalPatients : 0,
 			spinnerClasses: "spinner-medium spinner-medium-center ",
@@ -30,7 +30,6 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 			};
 
 			var outputView = overrides.viewOverride ? overrides.viewOverride : BB.View.extend({
-				ontology: ontology,
 				initialize: function(){
 					this.template = HBS.compile(outputTemplate);
 					overrides.renderOverride ? this.render = overrides.renderOverride.bind(this) : undefined;
@@ -43,48 +42,44 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 						}
 					});
 				},
-				events:{
-					"click #select-btn": "select"
-				},
-				select: function(event){
-					if(!this.dataSelection){
-						$("#select-btn", this.$el).hide();
-						var query = JSON.parse(JSON.stringify(this.model.get("query")));
-						this.dataSelection = new dataSelection({query:query});
-						$("#concept-tree-div",this.$el).append(this.dataSelection.$el);
-						this.dataSelection.render();
-					}
-				},
 				totalCount: 0,
 				tagName: "div",
 				update: function(incomingQuery){
-					this.model.set("totalPatients",0);
+//					this.model.set("totalPatients",0);
 
-					this.model.spinAll();
-					this.render();
+					//this.model.spinAll();
+					//this.render();
 
+								
+					//we will never resolve this 'Deferred'; but instead manually stop the spinner (we need to update the html for patient count anyway)		
+					spinner.medium($.Deferred(), "#patient-count");
+					
 					// make a safe deep copy of the incoming query so we don't modify it
 					var query = JSON.parse(JSON.stringify(incomingQuery));
+					console.log(query);
+
 					query.resourceUUID = JSON.parse(settings).picSureResourceId;
 					query.resourceCredentials = {};
 					query.query.expectedResultType="COUNT";
 					this.model.set("query", query);
 
-					if(this.dataSelection){
+					if(!this.dataSelection){
+						this.dataSelection = new dataSelection({query:query});
+                                                $("#concept-tree-div",this.$el).append(this.dataSelection.$el);
+					} else {
 						this.dataSelection.updateQuery(query);
-						this.dataSelection.render();
 					}
+					this.dataSelection.render();
 
 					var dataCallback = function(result){
 						this.model.set("totalPatients", parseInt(result));
-						this.model.set("spinning", false);
-						this.model.set("queryRan", true);
-						this.render();
+						$("#patient-count", this.$el).html(parseInt(result));
 					}.bind(this);
 
 					var errorCallback = function(message){
 						this.model.set("spinning", false);
                                                 this.model.set("queryRan", true);
+						//re render here because we want to clear out any old data after an error
                                                 this.render();
 						$("#patient-count").html(message);
 					}.bind(this);
