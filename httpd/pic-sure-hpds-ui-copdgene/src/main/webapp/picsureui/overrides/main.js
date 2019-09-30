@@ -23,7 +23,8 @@ define([],function(){
 			"filter/searchHelpTooltip" : "overrides/filter/searchHelpTooltip", 
 			"filter/searchResult" : "overrides/filter/searchResult",
 			"picSure/queryBuilder" : "overrides/query/queryBuilder",
-			"output/dataSelection" : "overrides/output/dataSelection"
+			"output/dataSelection" : "overrides/output/dataSelection",
+			"output/outputPanel" : "overrides/output/outputPanel"
 		}
 	});
 });

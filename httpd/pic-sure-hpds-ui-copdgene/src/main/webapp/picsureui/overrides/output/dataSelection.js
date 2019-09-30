@@ -1,7 +1,8 @@
-define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.hbs", "jstree", "picSure/ontology", "picSure/queryCache"], 
-	function(spinner, BB, HBS, template, jstree, ontology, queryCache){
+define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.hbs", "jstree", "picSure/ontology", "picSure/queryCache", "text!../settings/settings.json" ], 
+	function(spinner, BB, HBS, template, jstree, ontology, queryCache, settings){
 		return BB.View.extend({
 			template: HBS.compile(template),
+			settings: JSON.parse(settings),
 			initialize: function(opts){
 				this.selectedFields = [];
 				this.updateQuery(opts.query);
@@ -18,6 +19,7 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 					.concat(_.keys(query.query.numericFilters)));
 			},
 			prepare: function(){
+			
 				$("#download-btn", this.$el).attr("href", "");
 				$("#download-btn", this.$el).addClass('hidden');
 				var query = {};
@@ -27,28 +29,51 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 					return children == undefined || children.length === 0;
 				}.bind(this))
 				query.query.expectedResultType="DATAFRAME";
-				spinner.small(
+
+	
+				if(this.settings.useAsyncQuery) {
 					$.ajax({
-						url: window.location.origin + "/picsure/query/sync",
+						url: window.location.origin + "/picsure/query",
 						type: 'POST',
 						headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
 						contentType: 'application/json',
 						dataType: 'text',
 						data: JSON.stringify(query),
 						success: function(response){
-							responseDataUrl = URL.createObjectURL(new Blob([response], {type: "octet/stream"}));
-							$("#download-btn", this.$el).attr("href", responseDataUrl);
-							$("#download-btn", this.$el).removeClass('hidden');
-							console.log("done preparing")
+							console.log("received " + response)
+
+							respJson = JSON.parse(response);
+							$('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
 						}.bind(this),
 						error: function(response){
-							console.log("error preparing download : ");
+							console.log("error preparing async download : ");
 							console.log(response);
 						}.bind(this)
 					})
-					, "#download-spinner"
-					, "download-spinner"
-					);
+				} else {
+					spinner.small(
+						$.ajax({
+							url: window.location.origin + "/picsure/query/sync",
+							type: 'POST',
+							headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
+							contentType: 'application/json',
+							dataType: 'text',
+							data: JSON.stringify(query),
+							success: function(response){
+								responseDataUrl = URL.createObjectURL(new Blob([response], {type: "octet/stream"}));
+								$("#download-btn", this.$el).attr("href", responseDataUrl);
+								$("#download-btn", this.$el).removeClass('hidden');
+								console.log("done preparing")
+							}.bind(this),
+							error: function(response){
+								console.log("error preparing download : ");
+								console.log(response);
+							}.bind(this)
+						})
+						, "#download-spinner"
+						, "download-spinner"
+						);
+				}
 			},
 			updateCounts: _.debounce(function(){
 				$("#concept-tree", this.$el).on("before_open.jstree", function(event, data){
