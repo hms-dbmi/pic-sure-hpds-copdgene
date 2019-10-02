@@ -1,4 +1,4 @@
-FROM dbmi/pic-sure-hpds-ui:master.e95d19e AS pic-sure-hpds-ui
+FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-hpds-ui
 
 FROM httpd:2.4.27-alpine
 

@@ -29,3 +29,7 @@ COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/h
 # then copy overrides
 COPY psamaui-overrides /usr/local/apache2/htdocs/psamaui/overrides
 COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/overrides /usr/local/apache2/htdocs/picsureui/overrides
+
+#copy extra filter hbs file
+COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/filter/ /usr/local/apache2/htdocs/picsureui/filter
+
