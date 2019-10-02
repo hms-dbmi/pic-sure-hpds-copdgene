@@ -48,7 +48,7 @@ define(["backbone","handlebars", "text!header/header.hbs", "overrides/header", "
     var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
     link.type = 'image/x-icon';
     link.rel = 'shortcut icon';
-    link.href = 'static/DS_logo_circle.ico';
+    link.href = 'static/favicon.ico';
     document.getElementsByTagName('head')[0].appendChild(link);
 })();
 

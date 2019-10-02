@@ -50,6 +50,16 @@ body {
     padding-top: 10px;
 }
 
+.category-restriction-type-row {
+    display:flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+
+.category-filter-restriction-container {
+    flex: 1;
+}
+
 .resizable-select-div {
     resize: both;
     overflow: auto;
@@ -79,12 +89,24 @@ body {
 	width: unset;
 }
 
+.filter-qualifier {
+    display: contents;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .filter-search-row {
     background-color: rgb(223, 238, 255);
     padding: 10px;
     border-radius: 4px;
     margin-left: 0;
     margin-right: 0;
+}
+
+.search-box, .filter-search-box {
+    width: 80%;
 }
 
 .filter-list-entry {
@@ -123,10 +145,17 @@ body {
 .edit {
     padding: 6px 6px;
     width: unset;
+   float:right;
+} 
+
+.delete {
+    float: right;
+}
+
+.change-constraint {
+    float: right;
 }
 
 .search-tooltip-help-icon {
-    display: none;
+    float: left;
 }
-
-

@@ -8,6 +8,8 @@
 			"resourcePath" : "/i2b2-wildfly-count-only"
 		}
 		],
+	"picSureResourceId": "",
+	"applicationIdForBaseQuery":"",
   	"helpLink": "mailto:",
 	"advancedSearchLink": "/transmart/login/callback_processor",
 	"pdfLink":"about:blank",
