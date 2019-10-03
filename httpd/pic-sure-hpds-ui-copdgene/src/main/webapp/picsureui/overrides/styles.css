@@ -18,6 +18,18 @@
     overflow: hidden;
 }
 
+.sub-nav-pills {
+    padding: 10px;
+    border: 1px solid #6d6e70;
+    border-radius: 0 0 4px 4px;
+}
+
+.sub-nav-pills>li {
+    padding-right: 10px;
+    float: left;
+}
+
+
 body {
     background-color: #f4f4f6;
     font-family: 'Nunito Sans', sans-serif;
@@ -107,6 +119,17 @@ body {
 
 .search-box, .filter-search-box {
     width: 80%;
+}
+
+.tab-pane {
+    overflow-y: unset;
+    max-height: unset;
+}
+
+.search-result-list {
+    overflow-y: auto;
+    max-height: 300px;
+    border-bottom: 1px solid rgb(223, 238, 255);
 }
 
 .filter-list-entry {
