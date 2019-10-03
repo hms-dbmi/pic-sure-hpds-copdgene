@@ -29,6 +29,9 @@
     float: left;
 }
 
+.subcat-row {
+    background-color: rgb(223, 238, 255)
+}
 
 body {
     background-color: #f4f4f6;

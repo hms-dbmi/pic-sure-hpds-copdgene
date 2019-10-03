@@ -78,7 +78,14 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 
 		$("#"+_.first(keys)).addClass("active");
 		$(".nav-pills li:first-child").addClass("active");
-
+		
+		//hide category selection if only a single category.
+		if(keys.length > 1) {
+			$(".filter-search > .nav-pills").show();
+		} else {
+			//dont forget to show the cats again if we update!
+			$(".filter-search > .nav-pills").hide();
+		}
 	}.bind(searchResults);
 
 	return searchResults;
