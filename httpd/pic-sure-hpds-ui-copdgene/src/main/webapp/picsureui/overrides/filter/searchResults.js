@@ -9,9 +9,10 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 	};
 	searchResults.addSearchResultRows = function(data, filterView, queryCallback){
 		var keys = _.keys(data);
+		var compiledSubCategoryTemplate = this.searchSubCategories;
 		$('.search-tabs', filterView.$el).append(this.searchResultTabs(keys));
 		keys.forEach((key) => {
-			var subCategoryNames = [];
+			var subCategories = [];
 			var categorySearchResultViews = [];
 			$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 				if(data[key]){
@@ -29,19 +30,24 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 						// do not add a sub category for leaf nodes.  
 						if(valuePath.length > 2){
 							//console.log('subcategory : ' + valuePath[1]);
-							subCategoryNames.push(valuePath[1]);
+							subCategoryName = valuePath[1];
+							if(subCategories[subCategoryName] ){
+								subCategories[subCategoryName] = subCategories[subCategoryName] + 1;
+							} else {
+								subCategories[subCategoryName] = 1;
+							}
 						} else {
 							//console.log("Leaf : " + value.data);
 						}
 						
 						categorySearchResultViews.push(newSearchResultRow);
 					});
-					console.log("subCategories: " + subCategoryNames);
+					console.log("subCategories: " + subCategories);
 					data[key] = undefined;
 
-			#		if(subCategoryNames.length > 1){
-			#			$('#'+key+'.tab-pane', filterView.$el).append(this.searchSubCategories(subCategoryNames));
-			#		}
+					if(_.keys(subCategories).length > 1){
+						$('#'+key+'.tab-pane', filterView.$el).append(compiledSubCategoryTemplate(_.keys(subCategories)));
+					}
 
 					$('#'+key+'.tab-pane', filterView.$el).append(_.pluck(categorySearchResultViews, "$el"));
 				}
