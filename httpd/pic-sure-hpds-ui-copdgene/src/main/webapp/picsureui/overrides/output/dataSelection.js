@@ -32,58 +32,40 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 
 	
 				if(this.settings.useAsyncQuery) {
-					var queryId = '';
+					var queryUrlFragment = '';
 					var interval = 0;
-					var updateStatus = function(response){
-						console.log("received " + response)
-
-                                                respJson = JSON.parse(response);
-						//update page elements
-                                                $('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
-                            			
-						//now check status if query is not complete
-						queryId = respJson.picsureResultId;
-						status = respJson.status;
-						//back off; check at 5, 10, 15, 20, 25, 30 second intervals, then keep at 30 second check interval
-						interval = Math.min(interval + 5000, 30000);
-						
-						// Break out of this process if there is no data, or the query is over
-						if( !status || status == "ERROR" || status == "AVAILABLE" ){
-							return;
-						}
-						
-						
-						setTimeout(function () {
-							$.ajax({
-							url: window.location.origin + "/picsure/query/" + queryId + "/status",
+					(function updateStatus(){
+						$.ajax({
+							url: window.location.origin + "/picsure/query" + queryUrlFragment,
 							type: 'POST',
 							headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
 							contentType: 'application/json',
 							dataType: 'text',
 							data: JSON.stringify(query),
-							success: updateStatus,
+							success: function(response){
+								respJson = JSON.parse(response);
+								//update UI elements
+								$('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
+
+								// Break out of this process if there is no data, or the query is over
+								status = respJson.status;
+								if( !status || status == "ERROR" || status == "AVAILABLE" ){
+									return;
+								}
+
+                                                                //check again, but back off at 5, 10, 15, 20, 25, 30 second (max) intervals
+                                                                interval = Math.min(interval + 5000, 30000);
+								//hit the status endpoint after the first request
+								queryUrlFragment = "/" + respJson.picsureResultId + "/status";
+								setTimeout(updateStatus, interval);
+							},
 							error: function(response){
-								console.log("error preparing async download : ");
+								$('#resource-id-display', this.$el).html("Error running query, Please see logs");
+								console.log("error preparing async download: ");
 								console.log(response);
 							}
-						})}, interval);
-
-					}
-										
-
-					$.ajax({
-						url: window.location.origin + "/picsure/query",
-						type: 'POST',
-						headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
-						contentType: 'application/json',
-						dataType: 'text',
-						data: JSON.stringify(query),
-						success: updateStatus, 
-						error: function(response){
-							console.log("error preparing async download : ");
-							console.log(response);
-						}.bind(this)
-					})
+						});
+					}());
 				} else {
 					spinner.small(
 						$.ajax({
