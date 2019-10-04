@@ -32,6 +32,45 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 
 	
 				if(this.settings.useAsyncQuery) {
+					var queryId = '';
+					var interval = 0;
+					var updateStatus = function(response){
+						console.log("received " + response)
+
+                                                respJson = JSON.parse(response);
+						//update page elements
+                                                $('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
+                            			
+						//now check status if query is not complete
+						queryId = respJson.picsureResultId;
+						status = respJson.status;
+						//back off; check at 5, 10, 15, 20, 25, 30 second intervals, then keep at 30 second check interval
+						interval = Math.min(interval + 5000, 30000);
+						
+						// Break out of this process if there is no data, or the query is over
+						if( !status || status == "ERROR" || status == "AVAILABLE" ){
+							return;
+						}
+						
+						
+						setTimeout(function () {
+							$.ajax({
+							url: window.location.origin + "/picsure/query/" + queryId + "/status",
+							type: 'POST',
+							headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
+							contentType: 'application/json',
+							dataType: 'text',
+							data: JSON.stringify(query),
+							success: updateStatus,
+							error: function(response){
+								console.log("error preparing async download : ");
+								console.log(response);
+							}
+						})}, interval);
+
+					}
+										
+
 					$.ajax({
 						url: window.location.origin + "/picsure/query",
 						type: 'POST',
@@ -39,12 +78,7 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 						contentType: 'application/json',
 						dataType: 'text',
 						data: JSON.stringify(query),
-						success: function(response){
-							console.log("received " + response)
-
-							respJson = JSON.parse(response);
-							$('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
-						}.bind(this),
+						success: updateStatus, 
 						error: function(response){
 							console.log("error preparing async download : ");
 							console.log(response);
