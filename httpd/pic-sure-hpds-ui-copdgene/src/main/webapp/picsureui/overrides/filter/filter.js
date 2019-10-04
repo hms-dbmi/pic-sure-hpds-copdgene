@@ -1,5 +1,5 @@
-define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputPanel", "overrides/filter", "common/spinner", "backbone", "handlebars", "text!filter/filter.hbs", "text!filter/suggestion.hbs", "filter/searchResults", "picSure/queryCache", "text!filter/constrainFilterMenu.hbs", "text!filter/constrainFilterMenuCategories.hbs", "text!filter/constrainFilterMenuGenetics.hbs", "text!filter/constrainFilterMenuVariantInfo.hbs", "common/notification", "autocomplete", "bootstrap"],
-		function(ontology, searchHelpTooltipTemplate, outputPanel, overrides, spinner, BB, HBS, filterTemplate, suggestionTemplate, searchResults, queryCache, constrainFilterMenuTemplate, constrainFilterMenuCategoriesTemplate, constrainFilterMenuGeneticsTemplate, constrainFilterMenuVariantInfoTemplate, notification){
+define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputPanel", "overrides/filter", "common/spinner", "backbone", "handlebars", "text!filter/filter.hbs", "text!filter/suggestion.hbs", "filter/searchResults", "picSure/queryCache", "text!filter/constrainFilterMenu.hbs", "text!filter/constrainFilterMenuCategories.hbs", "text!filter/constrainFilterMenuGenetics.hbs", "text!filter/constrainFilterMenuVariantInfo.hbs", "common/notification", "text!settings/settings.json", "autocomplete", "bootstrap"],
+		function(ontology, searchHelpTooltipTemplate, outputPanel, overrides, spinner, BB, HBS, filterTemplate, suggestionTemplate, searchResults, queryCache, constrainFilterMenuTemplate, constrainFilterMenuCategoriesTemplate, constrainFilterMenuGeneticsTemplate, constrainFilterMenuVariantInfoTemplate, notification, settings){
 	var valueConstrainModel = BB.Model.extend({
 		defaults:{
 			constrainByValue: false,
@@ -113,7 +113,28 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 				alert("Result error");
 			} else {
 				$('.search-tabs', this.$el).html('');
-				searchResults.init(_.groupBy(result.suggestions, "category"), this, this.queryCallback);
+				var categorySearchResultList = JSON.parse(settings).categorySearchResultList;
+				var searchResultObject = {};
+
+				_.each(categorySearchResultList, function(item){
+					searchResultObject[item] = [];
+				});
+
+				_.each(result.suggestions, function(item){
+					var key = item.category;
+					var array = searchResultObject[key];
+					if (array) {
+						array.push(item);
+					} else {
+						searchResultObject[key] = [item];
+					};
+				});
+				_.each(_.keys(searchResultObject), function(key){
+					if(searchResultObject[key].length === 0){
+						delete searchResultObject[key];
+					}
+				});
+				searchResults.init(searchResultObject, this, this.queryCallback);
 			}
 		},
 		onDropdownSelect : function(event){
