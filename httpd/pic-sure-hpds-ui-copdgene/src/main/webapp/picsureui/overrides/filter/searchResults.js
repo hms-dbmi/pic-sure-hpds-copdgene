@@ -38,7 +38,6 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 				
 				categorySearchResultViews.push(newSearchResultRow);
 			});
-			console.log("subCategories: " + subCategories);
 			data[key] = undefined;
 
 			//save this tab object so we don't keep looking it up
