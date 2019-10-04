@@ -58,7 +58,8 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 						});
 					} else {
 						_.each(categorySearchResultViews, function(result){
-							if(result.model.attributes.parent == event.target.text){
+							var resultPath = result.model.attributes.data.substr(1, result.model.attributes.data.length-2).split('\\');
+							if(resultPath.length > 1 && resultPath[1] == event.target.text){
 								result.$el.show();
 							} else {
 								result.$el.hide();
