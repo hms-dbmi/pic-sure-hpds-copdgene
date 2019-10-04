@@ -9,5 +9,7 @@
 		],
   "helpLink": "about:blank",
   "advancedSearchLink": "",
-  "picSureResourceId": ""
-}
+  "picSureResourceId": "",
+  "categoryAliases": { },
+  "categorySearchResultList" : [  ]
+ }

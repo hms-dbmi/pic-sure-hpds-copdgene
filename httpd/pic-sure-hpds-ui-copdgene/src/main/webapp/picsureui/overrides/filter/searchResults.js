@@ -1,5 +1,5 @@
-define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "handlebars", "text!filter/searchResultTabs.hbs", "text!filter/searchResultSubCategories.hbs"],
-		function(outputPanel, queryBuilder, searchResult, HBS, searchResultTabsTemplate, searchSubCatTemplate){
+define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "handlebars", "text!filter/searchResultTabs.hbs", "text!filter/searchResultSubCategories.hbs", "text!../settings/settings.json"],
+		function(outputPanel, queryBuilder, searchResult, HBS, searchResultTabsTemplate, searchSubCatTemplate, settings){
 	var searchResults = {
 			init : function(data, view, callback){
 				this.searchResultTabs = HBS.compile(searchResultTabsTemplate);
@@ -8,9 +8,22 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 			}
 	};
 	searchResults.addSearchResultRows = function(data, filterView, queryCallback){
+		var settingsJson = JSON.parse(settings);
+		var getAliasName = function(key){
+			if(settingsJson.categoryAliases && settingsJson.categoryAliases[key]){
+                                return settingsJson.categoryAliases[key];
+                        } else {
+                                return key;
+                        }
+		}
 		var keys = _.keys(data);
+		var aliases = [];
+		keys.forEach((key) => {
+			aliases.push(getAliasName(key));
+		});
+		
 		var compiledSubCategoryTemplate = this.searchSubCategories;
-		$('.search-tabs', filterView.$el).append(this.searchResultTabs(keys));
+		$('.search-tabs', filterView.$el).append(this.searchResultTabs(aliases));
 		keys.forEach((key) => {
 			var subCategories = [];
 			var categorySearchResultViews = [];
@@ -41,7 +54,7 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 			data[key] = undefined;
 
 			//save this tab object so we don't keep looking it up
-			var tabPane = $('#'+key+'.tab-pane', filterView.$el)
+			var tabPane = $('#'+getAliasName(key)+'.tab-pane', filterView.$el)
 
 			if(_.keys(subCategories).length > 1){
 				$(".result-subcategories-div", tabPane).append(compiledSubCategoryTemplate(_.keys(subCategories)));
@@ -76,7 +89,7 @@ define(["output/outputPanel","picSure/queryBuilder", "filter/searchResult", "han
 
 		});
 
-		$("#"+_.first(keys)).addClass("active");
+		$("#"+_.first(aliases)).addClass("active");
 		$(".nav-pills li:first-child").addClass("active");
 		
 		//hide category selection if only a single category.
