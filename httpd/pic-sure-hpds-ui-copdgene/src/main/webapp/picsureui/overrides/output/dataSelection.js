@@ -128,7 +128,19 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 
 				spinner.small(
 					ontology.tree(function(tree){
-						tree.children = _.sortBy(tree.children, function(entry){return entry.text;});
+						//order export tree according to settings category selections
+						//look up the category indices once, so we don't spin through this array constantly.
+						var catIndices = {};
+						_.each(this.settings.categorySearchResultList, function(category, index){
+							catIndices[category] = index;
+						});
+						tree.children = _.sortBy(tree.children, function(entry){
+							//entry.id starts and ends with '\'
+							entryId = entry.id.substr(1, entry.id.length - 2); 
+							catIndex = catIndices[entryId];
+							
+							return (catIndex == undefined ? 999 : catIndex)  + entry.text;
+						});
 						var conceptTree = $("#concept-tree", this.$el).jstree({
 							core:{
 								data:tree,
