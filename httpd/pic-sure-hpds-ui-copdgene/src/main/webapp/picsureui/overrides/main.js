@@ -22,7 +22,11 @@ define([],function(){
 			"filter/filter" : "overrides/filter/filter",
 			"filter/searchHelpTooltip" : "overrides/filter/searchHelpTooltip", 
 			"filter/searchResult" : "overrides/filter/searchResult",
-			"picSure/queryBuilder" : "overrides/query/queryBuilder"
+			"filter/searchResults" : "overrides/filter/searchResults",
+			"filter/searchResultTabs" : "overrides/filter/searchResultTabs",
+			"picSure/queryBuilder" : "overrides/query/queryBuilder",
+			"output/dataSelection" : "overrides/output/dataSelection",
+			"output/outputPanel" : "overrides/output/outputPanel"
 		}
 	});
 });
