@@ -47,7 +47,8 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                     this.filterView.model.set("category", this.model.get("category"));
                     this.filterView.model.set("valueType", valueType);
                 }
-                this.filterView.model.attributes.constrainParams.attributes.constrainByValue=true;
+		//we do nto have any values to constrain
+                this.filterView.model.attributes.constrainParams.attributes.constrainByValue=false;
 	    },
 	    updateAnyRecordFilter: function (result) {
 		console.log("Update any record");
@@ -58,6 +59,8 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                     this.filterView.$el.addClass("saved");
 		  // clear any old filter data
                 this.filterView.updateConstrainFilterMenu();	
+                //fire off the filter's select logic immediately, because there are no constraints to configure for this filter.
+                this.filterView.onSelect();
 	    },
             toggleTree: function () {
                 var isNotStandardI2b2 = this.model.get("data").indexOf("~") == -1;
@@ -93,7 +96,7 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                 $('.node-tree-view', this.$el).treeview('expandAll');
                 $('.node-tree-view', this.$el).on('nodeSelected', function(event, data) {
                     var newData = {
-                        pui: data.nodePui.replace("/","\\"),
+                        pui: data.nodePui.replace(/\//g,"\\"),
                         textValue: data.text.trim()
                     }
                     this.anyRecordSelect(event, newData);

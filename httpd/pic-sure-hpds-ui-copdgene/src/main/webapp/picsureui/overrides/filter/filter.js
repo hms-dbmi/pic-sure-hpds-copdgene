@@ -156,7 +156,9 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		},
 		onSelect : function(event, suggestion){
 			console.log("selected");
-			if(this.model.attributes.concept.columnDataType==="VARIANT"){
+			if ( this.model.attributes.valueType === "ANYRECORDOF" ){
+				//model should already be updated.
+			}else if(this.model.attributes.concept.columnDataType==="VARIANT"){
 
 			}else{
 				this.model.set("inclusive", $('.filter-qualifier-btn', this.$el).text().trim() === "Must Have");
@@ -507,9 +509,9 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		render: function(){
 			this.$el.html(this.template(this.model.attributes));
 
-			if(this.model.attributes.valueType ==="ANYRECORDOF"){
-				$(".category-valueof-div", this.$el).html(this.constrainFilterMenuAnyRecordOfTemplate(this.model.attributes.anyRecordCategories));
-			}
+//			if(this.model.attributes.valueType ==="ANYRECORDOF"){
+//				$(".category-valueof-div", this.$el).html(this.constrainFilterMenuAnyRecordOfTemplate(this.model.attributes.anyRecordCategories));
+//			}
 
 			var spinnerSelector = this.$el.find(".spinner-div");
 
