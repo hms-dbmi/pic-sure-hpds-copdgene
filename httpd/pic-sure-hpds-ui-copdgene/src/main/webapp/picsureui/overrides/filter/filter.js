@@ -248,7 +248,7 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
                 selectAllCategories: function(event) {
 			var existingItems = $(".selected-categories > option");
                         
-                        //handle special case where no itmes in 'selected' control; no logic needed
+                        //handle special case where no items in 'selected' control; no logic needed
                         if(existingItems.length == 0){
                                 $(".selected-categories").append($(".available-categories > option"));
                                 return;
@@ -273,7 +273,7 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
                 clearCategorySelection: function(event) {
 			var existingItems = $(".available-categories > option");
 			
-			//handle special case where no itmes in 'available' control; no logic needed
+			//handle special case where no items in 'available' control; no logic needed
 			if(existingItems.length == 0){
 				$(".available-categories").append($(".selected-categories > option"));
 				return;

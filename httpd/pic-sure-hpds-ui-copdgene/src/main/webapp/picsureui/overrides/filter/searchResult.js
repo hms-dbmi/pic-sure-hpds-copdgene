@@ -43,11 +43,11 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
 
 		    var valueType = "ANYRECORDOF";
                     this.filterView.model.set("searchTerm", searchValue);
-                    this.filterView.model.set("searchValue", "Any record with a value in the tree: " + searchValue);
+                    this.filterView.model.set("searchValue", searchValue);
                     this.filterView.model.set("category", this.model.get("category"));
                     this.filterView.model.set("valueType", valueType);
                 }
-		//we do nto have any values to constrain
+		//we do not have any values to constrain. This is used later when building the query object
                 this.filterView.model.attributes.constrainParams.attributes.constrainByValue=false;
 	    },
 	    updateAnyRecordFilter: function (result) {
