@@ -100,7 +100,6 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
         });
     };
     var counts = function(tree, allConcepts, crossCounts) {
-      allConceptsLoaded.then(function() {
         var total = 0;
         var folderCount = 0;
         _.each(tree.children, function(child) {
@@ -121,7 +120,6 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
             }
         });
         return total + tree.children.length - folderCount;
-      });
     }
 
     var autocomplete = function(query, done) {
