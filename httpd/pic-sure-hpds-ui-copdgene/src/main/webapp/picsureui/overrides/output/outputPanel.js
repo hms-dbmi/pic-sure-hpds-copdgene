@@ -92,7 +92,7 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 									this.dataSelection.updateQuery(query);
 								}
 								this.dataSelection.render();
-					 	},
+						}.bind(this),
 					 	error: function(response){
 							if (response.status === 401) {
 								localStorage.clear();
