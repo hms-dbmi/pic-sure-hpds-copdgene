@@ -175,7 +175,7 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
 
     var cachedTree;
 
-//*************   THIS IS WHAT DIVERGED FROM MASTER    **************//
+//*************   THIS IS WHAT DIVERGED FROM MASTER 1 of 2   ********//
     var ontologyWorker = new Worker('overrides/picSure/ontologyWorker.js');
         
     dictionary("\\", function(allConceptsRetrieved) {
@@ -216,10 +216,12 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
     });
 
     var tree = function(consumer, crossCounts) {
+//*************   THIS IS WHAT DIVERGED FROM MASTER 2 of 2  *********//
             allConceptsLoaded.then(function() {
                 counts(cachedTree, allConcepts, crossCounts);
                 consumer(cachedTree);
             }.bind({cachedTree:cachedTree, consumer:consumer, crossCounts:crossCounts}));
+//******************************************************************//
     };
 
     var verifyPathsExist = function(paths, targetResource, done) {
