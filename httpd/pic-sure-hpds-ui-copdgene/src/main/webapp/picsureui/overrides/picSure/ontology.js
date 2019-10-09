@@ -175,6 +175,7 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
 
     var cachedTree;
 
+//*************   THIS IS WHAT DIVERGED FROM MASTER    **************//
     var ontologyWorker = new Worker('overrides/picSure/ontologyWorker.js');
         
     dictionary("\\", function(allConceptsRetrieved) {
@@ -183,8 +184,9 @@ define(["underscore", "text!../settings/settings.json", "picSure/resourceMeta"],
             cachedTree = event.data;
             allConceptsLoaded.resolve();
         }
-    ontologyWorker.postMessage([allConcepts]);
+    	ontologyWorker.postMessage([allConcepts]);
     });
+//******************************************************************//
 
     var allInfoColumnsQuery = {
         resourceUUID: JSON.parse(settings).picSureResourceId,
