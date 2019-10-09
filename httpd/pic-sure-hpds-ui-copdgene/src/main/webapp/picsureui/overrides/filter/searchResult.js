@@ -8,7 +8,7 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
             initialize: function(opts){
                 this.filterView = opts.filterView;
                 this.queryCallback = opts.queryCallback;
-		this.updateAnyValueFilter = this.updateAnyValueFilter.bind(this);
+		this.updateAnyRecordFilter = this.updateAnyRecordFilter.bind(this);
             },
             tagName: "div",
             className: "picsure-border-frame",
@@ -16,7 +16,7 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                 "click .autocomplete-term" : "onClick",
                 "click .pui-elipses" : "toggleTree",
             },
-	    anyValueSelect: function (event, data){
+	    anyRecordSelect: function (event, data){
 		//should probably start a spinner here
 
 		console.log(event);
@@ -24,7 +24,7 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
 		
 		// copy this code from the onClick(), as that does similar things; instead of just reading the required info
 		// from the filter object, though we need to make a call to the back end to get a complete list of categories
-		// and then add them in to the special 'anyValueOf' filter.  Then we want to immediately run the query, as the
+		// and then add them in to the special 'anyRecordOf' filter.  Then we want to immediately run the query, as the
   		// user can't change or select the ctegory values.
 
  
@@ -38,10 +38,10 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
 
 		    var deferredSearchResults = $.Deferred();
 		    ontology.autocomplete(searchValue, deferredSearchResults.resolve);
-		    $.when(deferredSearchResults).then(this.updateAnyValueFilter);
+		    $.when(deferredSearchResults).then(this.updateAnyRecordFilter);
 
 
-		    var valueType = "ANYVALUEOF";
+		    var valueType = "ANYRECORDOF";
                     this.filterView.model.set("searchTerm", searchValue);
                     this.filterView.model.set("searchValue", "Any record with a value in the tree: " + searchValue);
                     this.filterView.model.set("category", this.model.get("category"));
@@ -49,9 +49,9 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                 }
                 this.filterView.model.attributes.constrainParams.attributes.constrainByValue=true;
 	    },
-	    updateAnyValueFilter: function (result) {
-		console.log("Update any value");
-		this.filterView.model.set("anyValueCategories", _.pluck(result.suggestions, "data"));
+	    updateAnyRecordFilter: function (result) {
+		console.log("Update any record");
+		this.filterView.model.set("anyRecordCategories", _.pluck(result.suggestions, "data"));
                     this.filterView.render();
 	
                     //adding 'saved' class swaps visibility of input field and output/edit buttons
@@ -96,7 +96,7 @@ define(["common/spinner", "backbone", "handlebars", "text!filter/searchResult.hb
                         pui: data.nodePui.replace("/","\\"),
                         textValue: data.text.trim()
                     }
-                    this.anyValueSelect(event, newData);
+                    this.anyRecordSelect(event, newData);
 
                 }.bind(this));
                 $('.node-tree-view', this.$el).toggle()
