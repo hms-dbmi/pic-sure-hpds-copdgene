@@ -127,6 +127,8 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 				this.$el.html(this.template());
 
 				spinner.small(
+					// ontology.tree builds a tree of json objects, and passes it to the innter function which is
+					// responsible for rendering the elements.
 					ontology.tree(function(tree){
 						//order export tree according to settings category selections
 						//look up the category indices once, so we don't spin through this array constantly.

@@ -1,5 +1,5 @@
-define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputPanel", "overrides/filter", "common/spinner", "backbone", "handlebars", "text!filter/filter.hbs", "text!filter/suggestion.hbs", "filter/searchResults", "picSure/queryCache", "text!filter/constrainFilterMenu.hbs", "text!filter/constrainFilterMenuCategories.hbs", "text!filter/constrainFilterMenuGenetics.hbs", "text!filter/constrainFilterMenuVariantInfo.hbs", "common/notification", "text!settings/settings.json", "autocomplete", "bootstrap"],
-		function(ontology, searchHelpTooltipTemplate, outputPanel, overrides, spinner, BB, HBS, filterTemplate, suggestionTemplate, searchResults, queryCache, constrainFilterMenuTemplate, constrainFilterMenuCategoriesTemplate, constrainFilterMenuGeneticsTemplate, constrainFilterMenuVariantInfoTemplate, notification, settings){
+define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputPanel", "overrides/filter", "common/spinner", "backbone", "handlebars", "text!filter/filter.hbs", "text!filter/suggestion.hbs", "filter/searchResults", "picSure/queryCache", "text!filter/constrainFilterMenu.hbs", "text!filter/constrainFilterMenuCategories.hbs", "text!filter/constrainFilterMenuGenetics.hbs", "text!filter/constrainFilterMenuVariantInfo.hbs", "text!filter/constrainFilterMenuAnyValueOf.hbs", "common/notification", "text!settings/settings.json", "autocomplete", "bootstrap"],
+		function(ontology, searchHelpTooltipTemplate, outputPanel, overrides, spinner, BB, HBS, filterTemplate, suggestionTemplate, searchResults, queryCache, constrainFilterMenuTemplate, constrainFilterMenuCategoriesTemplate, constrainFilterMenuGeneticsTemplate, constrainFilterMenuVariantInfoTemplate, constrainFilterMenuAnyValueOfTemplate, notification, settings){
 	var valueConstrainModel = BB.Model.extend({
 		defaults:{
 			constrainByValue: false,
@@ -35,6 +35,7 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			this.constrainFilterMenuCategoriesTemplate = HBS.compile(constrainFilterMenuCategoriesTemplate);
 			this.constrainFilterMenuGeneticsTemplate = HBS.compile(constrainFilterMenuGeneticsTemplate);
 			this.constrainFilterMenuVariantInfoTemplate = HBS.compile(constrainFilterMenuVariantInfoTemplate);
+			this.constrainFilterMenuAnyValueOfTemplate = HBS.compile(constrainFilterMenuAnyValueOfTemplate);			
 
 			overrides.showSearchResults ? this.showSearchResults = overrides.showSearchResults.bind(this) : this.showSearchResults = this.showSearchResults.bind(this);
 			$('.search-help-tooltip').tooltip();
@@ -387,7 +388,11 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		updateConstrainFilterMenu : function() {
 
 			var filterEl = $('.constrain-filter', this.$el);
-			if(this.model.attributes.concept.columnDataType==="CONTINUOUS"){
+
+			if(this.model.attributes.valueType ==="ANYVALUEOF"){
+				console.log("Any Value Filter: " + this.model.attributes);
+				filterEl.html();
+			}else if(this.model.attributes.concept.columnDataType==="CONTINUOUS"){
 				filterEl.html(this.constrainFilterMenuTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
 			}else if (this.model.attributes.concept.columnDataType==="VARIANT"){
 				filterEl.html(this.constrainFilterMenuGeneticsTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
@@ -501,6 +506,11 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		},
 		render: function(){
 			this.$el.html(this.template(this.model.attributes));
+
+			if(this.model.attributes.valueType ==="ANYVALUEOF"){
+				$(".category-valueof-div", this.$el).html(this.constrainFilterMenuAnyValueOfTemplate(this.model.attributes.anyValueCategories));
+			}
+
 			var spinnerSelector = this.$el.find(".spinner-div");
 
 			var model = this.model;
