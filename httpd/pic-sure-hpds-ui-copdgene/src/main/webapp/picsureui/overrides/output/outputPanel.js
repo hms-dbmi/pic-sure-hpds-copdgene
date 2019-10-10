@@ -63,14 +63,6 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 					query.query.expectedResultType="COUNT";
 					this.model.set("query", query);
 
-					if(!this.dataSelection){
-						this.dataSelection = new dataSelection({query:query});
-                                                $("#concept-tree-div",this.$el).append(this.dataSelection.$el);
-					} else {
-						this.dataSelection.updateQuery(query);
-					}
-					this.dataSelection.render();
-
 					var dataCallback = function(result){
 						this.model.set("totalPatients", parseInt(result));
 						$("#patient-count", this.$el).html(parseInt(result));
@@ -93,7 +85,14 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 					 	data: JSON.stringify(query),
 					 	success: function(response){
 					 		dataCallback(response);
-					 	},
+								if(!this.dataSelection){
+									this.dataSelection = new dataSelection({query:query});
+									$("#concept-tree-div",this.$el).append(this.dataSelection.$el);
+								} else {
+									this.dataSelection.updateQuery(query);
+								}
+								this.dataSelection.render();
+						}.bind(this),
 					 	error: function(response){
 							if (response.status === 401) {
 								localStorage.clear();

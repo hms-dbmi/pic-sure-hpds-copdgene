@@ -25,6 +25,7 @@ define([],function(){
 			"filter/searchResults" : "overrides/filter/searchResults",
 			"filter/searchResultTabs" : "overrides/filter/searchResultTabs",
 			"picSure/queryBuilder" : "overrides/query/queryBuilder",
+			"picSure/ontology" : "overrides/picSure/ontology",
 			"output/dataSelection" : "overrides/output/dataSelection",
 			"output/outputPanel" : "overrides/output/outputPanel"
 		}

@@ -172,6 +172,7 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 											childNode.text = childNode.text.replace(/<b\>.*<\/b>/,'') +  " <b>(" + crossCounts[child] + " observations in subset)</b>";
 											$('#concept-tree', this.$el).jstree().redraw_node(child);
 										}.bind(this));
+										$('#prepare-btn', this.$el).removeClass('hidden');
 									}.bind(this),
 									error: console.log
 								});
@@ -183,7 +184,6 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 								this.selectedFields = _.without(this.selectedFields(node.id));
 							}.bind(this));
 							_.delay(function(){$('.jstree-node[aria-level=1] > .jstree-icon').click();}, 1000);
-							$('#prepare-btn').show();
 						}.bind(this))
 					, "#select-spinner"
 					, "select-spinner"
