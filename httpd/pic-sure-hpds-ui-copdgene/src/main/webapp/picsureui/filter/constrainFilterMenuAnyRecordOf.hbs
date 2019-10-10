@@ -1,5 +1,7 @@
     <div >
-    SHOW CATEGORY RESULTS HERE IN HIDDEN TAB
-
-{{#each this}}<div>{{this}}</div> {{/each}}
+   	<div class="anyrecordof-top-label btn btn-default"> {{this.length}} Variables in the category.  Click here to show (or hide) them. 
+	</div>	
+	<div class="hidden anyrecordof-value-list">
+		{{#each this}}<div>{{this}}</div> {{/each}}
+	</div>
     </div>

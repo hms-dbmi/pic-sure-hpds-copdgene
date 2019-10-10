@@ -65,7 +65,16 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			"input .category-filter" : "onCategoryFilterChange",
 			"click .select-all" : "selectAllCategories",
 			"click .select-none" : "clearCategorySelection",
-			"change .category-filter-restriction" : "updateCategoryFilterVisibility"
+			"change .category-filter-restriction" : "updateCategoryFilterVisibility",
+			"click .anyrecordof-top-label" : "showAnyRecordOfVariables"
+		},
+		showAnyRecordOfVariables: function(event){
+			var valueListEl = $(".anyrecordof-value-list", this.$el);
+			if(valueListEl.hasClass("hidden")){
+				valueListEl.removeClass("hidden");
+			} else {
+				valueListEl.addClass("hidden");
+			}
 		},
 		reset: function () {
 			this.model.clear().set(this.model.defaults);
@@ -178,6 +187,8 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 			this.updateConstrainFilterMenu();
 		},
 		changeConstraint : function (){
+			//need to remove the 'anyRecordOf' panel if we are changing constraints
+			$(".category-valueof-div", this.$el).hide();
 			this.$el.removeClass("saved"); 
 		},
 		destroyFilter: function () {
@@ -393,7 +404,7 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 
 			if(this.model.attributes.valueType ==="ANYRECORDOF"){
 				console.log("Any Value Filter: " + this.model.attributes);
-				filterEl.html();
+				filterEl.html('');
 			}else if(this.model.attributes.concept.columnDataType==="CONTINUOUS"){
 				filterEl.html(this.constrainFilterMenuTemplate(_.extend(this.model.attributes.constrainParams.attributes,this.model.attributes.concept)));
 			}else if (this.model.attributes.concept.columnDataType==="VARIANT"){
@@ -509,9 +520,9 @@ define(["picSure/ontology", "text!filter/searchHelpTooltip.hbs", "output/outputP
 		render: function(){
 			this.$el.html(this.template(this.model.attributes));
 
-//			if(this.model.attributes.valueType ==="ANYRECORDOF"){
-//				$(".category-valueof-div", this.$el).html(this.constrainFilterMenuAnyRecordOfTemplate(this.model.attributes.anyRecordCategories));
-//			}
+			if(this.model.attributes.valueType ==="ANYRECORDOF"){
+				$(".category-valueof-div", this.$el).html(this.constrainFilterMenuAnyRecordOfTemplate(this.model.attributes.anyRecordCategories));
+			}
 
 			var spinnerSelector = this.$el.find(".spinner-div");
 

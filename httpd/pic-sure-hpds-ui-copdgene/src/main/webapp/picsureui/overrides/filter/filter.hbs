@@ -13,14 +13,16 @@
             </div-->
         </div>
         <div class="filter-saved">
+		{{#unless anyRecordCategories}}
 		<div class="edit btn btn-default col-md-1">
-		    <a>edit</a>
+		    edit
 		</div>
+		{{/unless}}
 		<div class="change-constraint btn btn-default col-md-2">
-		    <a>change</a>
+		    change
 		</div>
 		<div class="delete btn btn-default col-md-2">
-		    <a>delete</a>
+		    delete
 		</div>
 
 		<div class="filter-qualifier">
@@ -28,13 +30,12 @@
 			<span class="autocomplete-category">{{#if category}}{{category}}{{else}}Variant{{/if}}</span>
 			<br></br>
 			<div>
-			    <span class="search-value">{{searchValue}}</span>
+		<span class="search-value">{{#if anyRecordCategories}}Any record with an observation in the category {{/if}}<b>{{searchValue}}</b></span>
 			</div>
 		    </div>
 		</div>
-	</div>
-    </div>
-    <div class="category-valueof-div">
+	    </div>
+	    <div class="category-valueof-div"></div>
     </div>
     <div class="constrain-filter"></div>
 	<div class="search-tabs"></div>
