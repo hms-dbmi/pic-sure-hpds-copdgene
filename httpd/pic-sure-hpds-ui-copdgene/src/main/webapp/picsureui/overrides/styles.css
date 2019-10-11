@@ -191,3 +191,11 @@ body {
     position: sticky;
     bottom: 25;
 }
+
+.anyvalueof-value-list {
+    max-height: 300;
+    overflow: auto;
+    border: 1px solid;
+    padding: 4px;
+    border-radius: 5px;
+}
