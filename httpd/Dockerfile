@@ -1,5 +1,6 @@
 FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:master.a34a43e as pic-sure-auth-ui
+FROM dbmi/pic-sure-auth-ui:fence-integration_bc017fa055f9 as psama-fence-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed
@@ -24,6 +25,8 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
 # copy pic-sure-hpds-ui and pic-sure-auth-ui base repos first
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
+COPY --from=psama-fence-ui /usr/local/apache2/htdocs/psamaui/login /usr/local/apache2/htdocs/psamaui/login
+
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
 
 # then copy overrides
@@ -32,4 +35,3 @@ COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/overrides /usr/local/ap
 
 #copy extra filter hbs file
 COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/filter/ /usr/local/apache2/htdocs/picsureui/filter
-
