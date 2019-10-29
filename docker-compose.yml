@@ -1,6 +1,31 @@
 version: '3.3'
 services:
 
+  hpds:
+    image: dbmi/pic-sure-hpds:master_43af05e
+    entrypoint:  java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms1g -Xmx6g -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=5000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000
+   volumes:
+     - /scratch/hpds_symlink/:/opt/local/phenocube
+     - /scratch/hpds_symlink/:/opt/local/hpds
+     - /scratch/hpds_symlink/:/opt/local/hpds/variants
+     - /scratch/hpds_symlink/:/opt/local/hpds/all
+   restart: always
+   environment:
+     - HEAPSIZE=2048
+     - CACHESIZE=500
+     - SMALL_TASK_THREADS=1
+     - LARGE_TASK_THREADS=1
+     - SMALL_JOB_LIMIT=100
+     - ID_BATCH_SIZE=50000
+     - SURVIVOR_RATIO=255
+   networks:
+     - copdgene-hpds
+   expose:
+     - 8080
+   ports:
+     - 8080:8080
+
+     
   wildfly:
     image: jboss/wildfly:17.0.0.Final
     volumes:
