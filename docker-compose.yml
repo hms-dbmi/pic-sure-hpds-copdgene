@@ -1,31 +1,6 @@
 version: '3.3'
 services:
 
-  hpds:
-    image: dbmi/pic-sure-hpds:master_43af05e
-    entrypoint:  java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms1g -Xmx6g -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=5000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000
-   volumes:
-     - /scratch/hpds_symlink/:/opt/local/phenocube
-     - /scratch/hpds_symlink/:/opt/local/hpds
-     - /scratch/hpds_symlink/:/opt/local/hpds/variants
-     - /scratch/hpds_symlink/:/opt/local/hpds/all
-   restart: always
-   environment:
-     - HEAPSIZE=2048
-     - CACHESIZE=500
-     - SMALL_TASK_THREADS=1
-     - LARGE_TASK_THREADS=1
-     - SMALL_JOB_LIMIT=100
-     - ID_BATCH_SIZE=50000
-     - SURVIVOR_RATIO=255
-   networks:
-     - copdgene-hpds
-   expose:
-     - 8080
-   ports:
-     - 8080:8080
-
-     
   wildfly:
     image: jboss/wildfly:17.0.0.Final
     volumes:
@@ -40,24 +15,45 @@ services:
       - 8787
     user: root
     depends_on:
+      - db
       - copy-picsure2-war
       - copy-picsureauth-war
     ports:
-      - 8081:8080
       - 9990:9990
       - 8787:8787
     env_file:
       - ${ENV_FILE}
+
+  hpds:
+    image: dbmi/pic-sure-hpds:master_43af05e
+    entrypoint:  java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms1g -Xmx6g -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=5000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000
+    volumes:
+      - /scratch/hpds_symlink/:/opt/local/phenocube
+      - /scratch/hpds_symlink/:/opt/local/hpds
+      - /scratch/hpds_symlink/:/opt/local/hpds/variants
+      - /scratch/hpds_symlink/:/opt/local/hpds/all
+    restart: always
+    environment:
+      - HEAPSIZE=2048
+      - CACHESIZE=500
+      - SMALL_TASK_THREADS=1
+      - LARGE_TASK_THREADS=1
+      - SMALL_JOB_LIMIT=100
+      - ID_BATCH_SIZE=50000
+      - SURVIVOR_RATIO=255
+    networks:
+      - copdgene-hpds
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
 
   httpd:
     build:
       context: ./httpd
       dockerfile: Dockerfile
     volumes:
-      - ${PWD}/config/psamaui/settings/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
-      - ${PWD}/config/picsureui/settings/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
       - ${CONFIG_DIR}/httpd/cert:/usr/local/apache2/cert
-      - ${CONFIG_DIR}/httpd/static:/usr/local/apache2/htdocs/picsureui/static
     networks:
       - copdgene-hpds
     restart: always
@@ -75,13 +71,26 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: dbmi/pic-sure-auth-services:fence-integration_bc017fa055f9
+    image: dbmi/pic-sure-auth-services:fence-integration.ee2b4ce527c9
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - copdgene-hpds
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
+
+  db:
+    build:
+      context: db
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=${AUTH_MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_DATABASE=auth
+    restart: always
+    expose:
+      - 3306
+    networks:
+      - copdgene-hpds
 
 networks:
   copdgene-hpds:
