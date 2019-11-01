@@ -79,9 +79,12 @@ services:
       - copdgene-hpds
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
 
+  # This is just a temporary solution. The database, for PSAMA and PICSURE
+  # will not be running, in PROD, on the same docker engine as the other
+  # containers.
   db:
     build:
-      context: db
+      context: config/db
       dockerfile: Dockerfile
     environment:
       - MYSQL_ROOT_PASSWORD=${AUTH_MYSQL_ROOT_PASSWORD:-password}
