@@ -8,6 +8,8 @@ RUN apk add --update openssl sed
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
+COPY mapping.json ${HTTPD_PREFIX}/htdocs/
+
 # Enable virtual hosting config file
 RUN sed -i '/^#Include conf.extra.httpd-vhosts.conf/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 
