@@ -1,16 +1,24 @@
 FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:master.a34a43e as pic-sure-auth-ui
-FROM dbmi/pic-sure-auth-ui:fence-integration.ee2b4ce527c9 as psama-fence-ui
+FROM dbmi/pic-sure-auth-ui:master.a34a43e as psama-ui
+FROM dbmi/pic-sure-auth-ui:fence-integration.2449f67be573 as psama-fence-ui
 FROM httpd:2.4.27-alpine
 
-RUN apk add --update openssl sed
+RUN apk add --update gcc musl-dev python3-dev libffi-dev libressl-dev jq
+RUN pip3 install --upgrade pip
+RUN pip3 install PyJWT pystache
 
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
 COPY mapping.json ${HTTPD_PREFIX}/htdocs/
+COPY config/ /tmp/config/
+
+COPY cert/server.chain ${HTTPD_PREFIX}/cert/
+COPY cert/server.key ${HTTPD_PREFIX}/cert/
+COPY cert/server.crt ${HTTPD_PREFIX}/cert/
 
 # Enable virtual hosting config file
+
 RUN sed -i '/^#Include conf.extra.httpd-vhosts.conf/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 
 # Enable necessary proxy modules
@@ -25,8 +33,8 @@ RUN sed -i '/^#LoadModule rewrite_module modules\/mod_rewrite.so/s/^#//' ${HTTPD
 RUN sed -i '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
-# copy pic-sure-hpds-ui and pic-sure-auth-ui base repos first
-COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
+# copy pic-sure-hpds-ui and psama_ui base repos first
+COPY --from=psama-ui /usr/local/apache2/htdocs/psamaui /usr/local/apache2/htdocs/psamaui
 COPY --from=psama-fence-ui /usr/local/apache2/htdocs/psamaui/login /usr/local/apache2/htdocs/psamaui/login
 
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs/picsureui /usr/local/apache2/htdocs/picsureui
@@ -37,3 +45,9 @@ COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/overrides /usr/local/ap
 
 #copy extra filter hbs file
 COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/filter/ /usr/local/apache2/htdocs/picsureui/filter
+
+RUN /tmp/config/make_picsureui_settings.sh
+RUN /tmp/config/make_psamaui_settings.sh
+
+RUN python3 /tmp/config/make_picsure_app_token.py > /tmp/config/picsure_app_token.txt
+RUN python3 /tmp/config/make_privileges_sql.py > /tmp/config/privileges.sql

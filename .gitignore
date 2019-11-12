@@ -1,2 +1,4 @@
 target/
 *.swp
+.setup
+config/wildfly/deployments

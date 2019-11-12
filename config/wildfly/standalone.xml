@@ -151,7 +151,7 @@
                     </security>
                 </datasource>
                 <datasource jndi-name="java:jboss/datasources/PicsureDS" pool-name="PicsureDS" use-java-context="true">
-                    <connection-url>jdbc:mysql://192.168.99.1:3307/picsure?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true</connection-url>
+                    <connection-url>jdbc:mysql://${env.PSAMA_DB_HOST}:3${env.PSAMA_DB_PORT}/picsure?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true</connection-url>
                     <driver>mysql</driver>
                     <pool>
                         <min-pool-size>5</min-pool-size>
@@ -159,8 +159,8 @@
                         <prefill>true</prefill>
                     </pool>
                     <security>
-                        <user-name>root</user-name>
-                        <password>h46sFkpMjT7Ny6kD</password>
+                        <user-name>${env.PSAMA_DB_USERNAME}</user-name>
+                        <password>${env.PSAMA_DB_PASSWORD}</password>
                     </security>
                     <validation>
                         <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
@@ -456,7 +456,7 @@
             <bindings>
                 <simple name="java:global/verify_user_method" value="tokenIntrospection"/>
                 <simple name="java:global/token_introspection_url" value="http://wildfly:8080/pic-sure-auth-services/auth/token/inspect"/>
-                <simple name="java:global/token_introspection_token" value=" "/> 
+                <simple name="java:global/token_introspection_token" value=" "/>
                 <simple name="java:global/client_secret" value="foo"/>
                 <simple name="java:global/client_id" value="bar"/>
                 <simple name="java:global/user_id_claim" value="sub"/>
@@ -574,4 +574,3 @@
         </outbound-socket-binding>
     </socket-binding-group>
 </server>
-

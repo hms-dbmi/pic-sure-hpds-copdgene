@@ -28,10 +28,10 @@ services:
     image: dbmi/pic-sure-hpds:master_43af05e
     entrypoint:  java  -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n -XX:+UseParallelGC -XX:SurvivorRatio=250 -Xms1g -Xmx6g -server -jar hpds.jar -httpPort 8080 -DCACHE_SIZE=5000 -DSMALL_TASK_THREADS=1 -DLARGE_TASK_THREADS=1 -DSMALL_JOB_LIMIT=100 -DID_BATCH_SIZE=2000
     volumes:
-      - /scratch/hpds_symlink/:/opt/local/phenocube
-      - /scratch/hpds_symlink/:/opt/local/hpds
-      - /scratch/hpds_symlink/:/opt/local/hpds/variants
-      - /scratch/hpds_symlink/:/opt/local/hpds/all
+      - ${HPDS_DIR}/:/opt/local/phenocube
+      - ${HPDS_DIR}/:/opt/local/hpds
+      - ${HPDS_DIR}/:/opt/local/hpds/variants
+      - ${HPDS_DIR}/:/opt/local/hpds/all
     restart: always
     environment:
       - HEAPSIZE=2048
@@ -52,8 +52,6 @@ services:
     build:
       context: ./httpd
       dockerfile: Dockerfile
-    volumes:
-      - ${CONFIG_DIR}/httpd/cert:/usr/local/apache2/cert
     networks:
       - copdgene-hpds
     restart: always
@@ -62,7 +60,7 @@ services:
       - 443:443
 
   copy-picsure2-war:
-    image: dbmi/picsure2:${picsure2_version}
+    image: dbmi/picsure2:master.5ec432235ed1
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
@@ -71,7 +69,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: dbmi/pic-sure-auth-services:fence-integration.ee2b4ce527c9
+    image: dbmi/pic-sure-auth-services:fence-integration.2449f67be573
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
@@ -92,6 +90,8 @@ services:
     restart: always
     expose:
       - 3306
+    ports:
+      - 3306:3306
     networks:
       - copdgene-hpds
 

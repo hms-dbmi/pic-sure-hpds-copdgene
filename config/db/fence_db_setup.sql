@@ -6,6 +6,7 @@ SHOW GRANTS FOR 'root'@'%';
 DROP DATABASE IF EXISTS `auth`;
 CREATE DATABASE IF NOT EXISTS `auth` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `auth`;
+
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: auth
@@ -171,12 +172,12 @@ CREATE TABLE `application` (
 INSERT INTO `application` (`uuid`, `description`, `enable`, `name`, `token`, `url`)
 VALUES
 	(
-		X'8B5722C962FD48D6B0BF4F67E53EFB2B', 
-		X'5049432D53555245206D756C7469706C6520646174612061636365737320415049', 
-		1, 
-		X'50494353555245', 
-		NULL, 
-		X'2F706963737572657569'
+		X'8B5722C962FD48D6B0BF4F67E53EFB2B',
+		'PIC-SURE multiple data access API',
+		1,
+		'PICSURE',
+		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiUFNBTUFfQVBQTElDQVRJT058UElDU1VSRSIsInN1YiI6IlBTQU1BX0FQUExJQ0FUSU9OfDhiNTcyMmM5LTYyZmQtNDhkNi1iMGJmLTRmNjdlNTNlZmIyYiIsImV4cCI6MTU3MzUzMTUxMSwiaWF0IjoxNTczNTI0MzExfQ.hXSetcQUcwj59j4f9ulNbTQvBDwxGDYH9JT0Zd1HIGE',
+		'/picsureui'
 );
 
 
@@ -256,7 +257,6 @@ INSERT INTO user_role (
 	UNHEX(@uuidUser),
 	UNHEX(@uuidRole)
 );
-
 
 DROP DATABASE IF EXISTS `picsure`;
 CREATE DATABASE IF NOT EXISTS `picsure` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
@@ -344,7 +344,6 @@ CREATE TABLE `user` (
 
 -- Dump completed on 2018-05-24 16:46:11
 
-START TRANSACTION;
 
 DELETE FROM `resource` WHERE `name` = 'hpds';
 
@@ -360,15 +359,10 @@ INSERT INTO `resource` (
 ) VALUES (
 	unhex(@uuidResource),
 	NULL,
-	'http://localhost:8881/hpds',
+	'http://hpds:8080/PIC-SURE/',
 	'Basic HPDS resource',
 	'hpds',
 	NULL
 );
 
 COMMIT;
-
-
-
-
-
