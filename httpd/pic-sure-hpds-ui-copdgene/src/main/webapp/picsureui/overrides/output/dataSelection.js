@@ -9,7 +9,8 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 			},
 			events:{
 				"click #prepare-btn" : "prepare",
-				"prepare" : "prepare"
+				"prepare" : "prepare",
+				"click #copy-queryid-btn" : "copyQueryId"
 			},
 			updateQuery: function(query){
 				this.query = query;
@@ -19,9 +20,13 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 					.concat(_.keys(query.query.numericFilters)));
 			},
 			prepare: function(){
-			
+				$("#prepare-btn", this.$el).addClass("hidden");
 				$("#download-btn", this.$el).attr("href", "");
 				$("#download-btn", this.$el).addClass('hidden');
+				$("#copy-queryid-btn", this.$el).addClass('hidden');
+				var spinTrigger = $.Deferred();
+				spinner.large(spinTrigger, "#download-spinner", "download-spinner");				
+
 				var query = {};
 				query = JSON.parse(JSON.stringify(this.query));
 				query.query.fields = _.filter($('#concept-tree', this.$el).jstree().get_selected(), function(child){
@@ -30,66 +35,84 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 				}.bind(this))
 				query.query.expectedResultType="DATAFRAME";
 
-	
-				if(this.settings.useAsyncQuery) {
-					var queryUrlFragment = '';
-					var interval = 0;
-					(function updateStatus(){
-						$.ajax({
-							url: window.location.origin + "/picsure/query" + queryUrlFragment,
-							type: 'POST',
-							headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
-							contentType: 'application/json',
-							dataType: 'text',
-							data: JSON.stringify(query),
-							success: function(response){
-								respJson = JSON.parse(response);
-								//update UI elements
-								$('#resource-id-display', this.$el).html("QueryId: " + respJson.resourceResultId + "<br/>Status: " + respJson.status);
+				var bbView = this;
+				var queryUrlFragment = '';
+				var interval = 0;
+				(function updateStatus(){
+					$.ajax({
+						url: window.location.origin + "/picsure/query" + queryUrlFragment,
+						type: 'POST',
+						headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
+						contentType: 'application/json',
+						dataType: 'text',
+						data: JSON.stringify(query),
+						context: bbView,
+						success: function(response){
+							respJson = JSON.parse(response);
+							//update UI elements
+							$('#resource-id-display', this.$el).html("QueryId: <span id='queryid-span'>" + respJson.picsureResultId + "</span><br/>Status: " + respJson.status);
 
-								// Break out of this process if there is no data, or the query is over
-								status = respJson.status;
-								if( !status || status == "ERROR" || status == "AVAILABLE" ){
-									return;
-								}
-
-                                                                //check again, but back off at 5, 10, 15, 20, 25, 30 second (max) intervals
-                                                                interval = Math.min(interval + 5000, 30000);
-								//hit the status endpoint after the first request
-								queryUrlFragment = "/" + respJson.picsureResultId + "/status";
-								setTimeout(updateStatus, interval);
-							},
-							error: function(response){
-								$('#resource-id-display', this.$el).html("Error running query, Please see logs");
-								console.log("error preparing async download: ");
-								console.log(response);
-							}
-						});
-					}());
-				} else {
-					spinner.small(
-						$.ajax({
-							url: window.location.origin + "/picsure/query/sync",
-							type: 'POST',
-							headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
-							contentType: 'application/json',
-							dataType: 'text',
-							data: JSON.stringify(query),
-							success: function(response){
-								responseDataUrl = URL.createObjectURL(new Blob([response], {type: "octet/stream"}));
-								$("#download-btn", this.$el).attr("href", responseDataUrl);
+							// Break out of this process if there is no data, or the query is over
+							status = respJson.status;
+							if( !status || status == "ERROR") {
+								spinTrigger.resolve();
+								return;
+							} else if ( status == "AVAILABLE" ){
+								spinTrigger.resolve();
 								$("#download-btn", this.$el).removeClass('hidden');
-								console.log("done preparing")
-							}.bind(this),
-							error: function(response){
-								console.log("error preparing download : ");
-								console.log(response);
-							}.bind(this)
-						})
-						, "#download-spinner"
-						, "download-spinner"
-						);
-				}
+								$("#download-btn", this.$el).click(function(){this.downloadData(respJson.picsureResultId, query)}.bind(this));
+								$("#copy-queryid-btn", this.$el).removeClass('hidden');
+								return;
+							}
+
+							//check again, but back off at 2, 4, 6, 8... second intervals (30s max)
+							interval = Math.min(interval + 2000, 30000);
+							//hit the status endpoint after the first request
+							queryUrlFragment = "/" + respJson.picsureResultId + "/status";
+							setTimeout(updateStatus, interval);
+						},
+						error: function(response){
+							$('#resource-id-display', this.$el).html("Error running query, Please see logs");
+							console.log("error preparing async download: ");
+							console.log(response);
+						}
+					});
+				}());
+			},
+			downloadData: function(queryId, query){
+				$.ajax({
+					url: window.location.origin + "/picsure/query/" + queryId + "/result",
+					type: 'POST',
+					headers: {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem("session")).token},
+					contentType: 'application/json',
+					dataType: 'text',
+					data: "{}",
+					success: function(response){
+						responseDataUrl = URL.createObjectURL(new Blob([response], {type: "octet/stream"}));
+						$("#download-btn", this.$el).attr("href", responseDataUrl);
+						console.log("done preparing");
+						//now the download button will return the data from memory; 
+						// but we don't want to make the user click twice;  lets click for them!
+						$("#download-btn", this.$el).click();
+					}.bind(this),
+					error: function(response){
+						console.log("error preparing download : ");
+						console.log(response);
+					}.bind(this)
+				})
+			}.bind(this),
+			copyQueryId: function(){
+				//this will copy the query ID to the user's clipboard
+				var sel = getSelection();
+				var range = document.createRange();
+
+				// this is for supporting chrome, since chrome will look for value instead of textContent
+				document.getElementById("queryid-span").value
+					= document.getElementById("queryid-span").textContent;
+				range.selectNode(document.getElementById("queryid-span"));
+				sel.removeAllRanges();
+				sel.addRange(range);
+				document.execCommand("copy");
 			},
 			updateCounts: _.debounce(function(){
 				$("#concept-tree", this.$el).on("before_open.jstree", function(event, data){
