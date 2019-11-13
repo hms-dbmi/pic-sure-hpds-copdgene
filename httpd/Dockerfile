@@ -1,6 +1,6 @@
 FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:master.a34a43e as psama-ui
-FROM dbmi/pic-sure-auth-ui:fence-integration.2449f67be573 as psama-fence-ui
+FROM dbmi/pic-sure-auth-ui:fence-integration.92038e48cb43 as psama-fence-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update gcc musl-dev python3-dev libffi-dev libressl-dev jq
@@ -10,7 +10,8 @@ RUN pip3 install PyJWT pystache
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
-COPY mapping.json ${HTTPD_PREFIX}/htdocs/
+
+COPY config/fence_mapping.json ${HTTPD_PREFIX}/htdocs/
 COPY config/ /tmp/config/
 
 COPY cert/server.chain ${HTTPD_PREFIX}/cert/
@@ -45,9 +46,13 @@ COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/overrides /usr/local/ap
 
 #copy extra filter hbs file
 COPY pic-sure-hpds-ui-copdgene/src/main/webapp/picsureui/filter/ /usr/local/apache2/htdocs/picsureui/filter
+COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/picsureui/static/logo.png
 
 RUN /tmp/config/make_picsureui_settings.sh
 RUN /tmp/config/make_psamaui_settings.sh
 
+
 RUN python3 /tmp/config/make_picsure_app_token.py > /tmp/config/picsure_app_token.txt
 RUN python3 /tmp/config/make_privileges_sql.py > /tmp/config/privileges.sql
+
+

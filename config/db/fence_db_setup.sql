@@ -180,7 +180,6 @@ VALUES
 		'/picsureui'
 );
 
-
 CREATE TABLE `access_rule` (
   `uuid` binary(16) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -197,6 +196,21 @@ CREATE TABLE `access_rule` (
   KEY `FK8rovvx363ui99ce21sksmg6uy` (`subAccessRuleParent_uuid`),
   CONSTRAINT `FK8rovvx363ui99ce21sksmg6uy` FOREIGN KEY (`subAccessRuleParent_uuid`) REFERENCES `access_rule` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+SET @uuidGATE = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidGATE),
+	'GATE_FENCE_CONSENT_REQUIRED',
+	'Allow querys with consent requirement only.',
+	"$.query.query.expectedResultType",
+	10,
+	'DATAFRAME,DATAFRAME_MERGED,COUNT,CROSS_COUNT,OBSERVATION_COUNT',
+	0,
+	1,
+	NULL,
+	0,
+	0
+);
 
 CREATE TABLE `accessRule_privilege` (
   `privilege_id` binary(16) NOT NULL,
