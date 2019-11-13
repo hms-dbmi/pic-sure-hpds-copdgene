@@ -1,6 +1,6 @@
 FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:master.a34a43e as psama-ui
-FROM dbmi/pic-sure-auth-ui:fence-integration.92038e48cb43 as psama-fence-ui
+FROM dbmi/pic-sure-auth-ui:fence-integration.6d72e2d35275 as psama-fence-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update gcc musl-dev python3-dev libffi-dev libressl-dev jq
@@ -54,5 +54,3 @@ RUN /tmp/config/make_psamaui_settings.sh
 
 RUN python3 /tmp/config/make_picsure_app_token.py > /tmp/config/picsure_app_token.txt
 RUN python3 /tmp/config/make_privileges_sql.py > /tmp/config/privileges.sql
-
-
