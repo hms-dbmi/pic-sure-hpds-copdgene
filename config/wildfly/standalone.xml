@@ -442,8 +442,10 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:jsf:1.1"/>
         <subsystem xmlns="urn:jboss:domain:mail:3.0">
-            <mail-session name="java:jboss/mail/gmail" from="gkorodi@gmail.com" jndi-name="java:jboss/mail/gmail" debug="false">
-                <smtp-server outbound-socket-binding-ref="mail-smtp-gmail" tls="true" username="gkorodi@gmail.com" password="gkorodi@gmail.com"/>
+            <mail-session name="java:jboss/mail/gmail" from="${env.EMAIL_USERNAME_FROM:emailFromName}" jndi-name="java:jboss/mail/gmail" debug="false">
+                <smtp-server outbound-socket-binding-ref="mail-smtp-gmail" tls="true" 
+									username="${env.EMAIL_USERNAME:missingEmailUsername}" 
+										password="${env.EMAIL_PASSWORD:missingEmailPassword}" />
             </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
@@ -454,18 +456,19 @@
                 <!-- Used in IRCT as well -->
                 <simple name="java:global/verify_user_method" value="tokenIntrospection"/>
                 <simple name="java:global/token_introspection_url" value="http://wildfly:8080/pic-sure-auth-services/auth/token/inspect"/>
-                <simple name="java:global/token_introspection_token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQU0FNQV9BUFBMSUNBVElPTnw4YjU3MjJjOS02MmZkLTQ4ZDYtYjBiZi00ZjY3ZTUzZWZiMmIiLCJ1c2VyX2lkIjoiUFNBTUFfQVBQTElDQVRJT058UElDU1VSRSIsImV4cCI6MTYzNjIyMTQ5MSwiaWF0IjoxNTczMTQ5NDkxfQ.nzEYQmBXTtDjXp9JBnf9QYOLwF8mdJiMT8Z_Tw9k2kQ" />
+                <simple name="java:global/token_introspection_token" value="${env.PICSURE_APP_TOKEN}" />
                 <simple name="java:global/target_url_pic-sure-irct-resource" value="http://irct:8080/IRCT-CL/rest/" />
                 <!--
                 This setting is for Guava Cache search by the pic-sure-irct
                 resource interface. For now we just reuse the same PIC-SURE
                 token.
                 -->
-                <simple name="java:global/SEARCH_TOKEN" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQU0FNQV9BUFBMSUNBVElPTnw4YjU3MjJjOS02MmZkLTQ4ZDYtYjBiZi00ZjY3ZTUzZWZiMmIiLCJ1c2VyX2lkIjoiUFNBTUFfQVBQTElDQVRJT058UElDU1VSRSIsImV4cCI6MTYzNjIyMTQ5MSwiaWF0IjoxNTczMTQ5NDkxfQ.nzEYQmBXTtDjXp9JBnf9QYOLwF8mdJiMT8Z_Tw9k2kQ"/>
-
+                <simple name="java:global/SEARCH_TOKEN" value="${env.PICSURE_APP_TOKEN}" />
+								
                 <!-- psama configuration-->
-                <simple name="java:global/client_secret" value="nQWNixJHJ_jRWd6ZuFY9XJNdt9-gDvqBkpN9b80qHn7ySpCUfTdwIm0F85UZgbB4"/>
-                <simple name="java:global/client_id" value="isthisused"/>
+                <simple name="java:global/client_secret" value="${env.PSAMA_CLIENT_SECRET:missingSecret}"/>
+                <simple name="java:global/client_id" value="${env.PSAMA_CLIENT_ID:missingAndNotUsedWithFENCE}"/>
+								
                 <simple name="java:global/systemName" value="DataStageDev2"/>
                 <simple name="java:global/clientSecretIsBase64" value="False"/>
                 <simple name="java:global/userActivationTemplatePath" value="/psama/activation"/>
@@ -482,10 +485,10 @@
                 <simple name="java:global/idp_provider" value="fence"/>
                 <simple name="java:global/idp_provider_uri" value="https://staging.datastage.io" />
 
-                <simple name="java:global/fence_client_id" value="3YkHUAoPSwaRWzSuNN0DyDbJeU1AxrMVkXBczDo6"/>
-                <simple name="java:global/fence_client_secret" value="W7JGecNQ91fMFRb0YVTRnqJ6fytPK4FIK2ZCsAbiQMbHaoTENHGzLFD"/>
+                <simple name="java:global/fence_client_id" value="${env.FENCE_CLIENT_ID:missingFenceID}"/>
+                <simple name="java:global/fence_client_secret" value="${env.FENCE_CLIENT_SECRET:missingFenceSecret}"/>
                 <simple name="java:global/fence_redirect_back_url" value="https://datastage-i2b2-transmart-stage.aws.dbmi.hms.harvard.edu/psamaui/login/" />
-		<simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
+                <simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
 
                 <!-- irct service -->
                 <simple name="java:global/domain" value="unused_but_required"/>

@@ -197,6 +197,52 @@ CREATE TABLE `access_rule` (
   CONSTRAINT `FK8rovvx363ui99ce21sksmg6uy` FOREIGN KEY (`subAccessRuleParent_uuid`) REFERENCES `access_rule` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+SET @uuidAR = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidAR),
+	'AR_ONLY_INFO',
+	'FENCE rule for /info, could be combined with other AR_ONLY rules.',
+	"$.['Target Service']",
+	6,
+	'/info',
+	0,
+	0,
+	NULL,
+	0,
+	0
+);
+
+SET @uuidAR = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidAR),
+	'AR_ONLY_QUERY',
+	'FENCE rule for /query, could be combined with other AR_ONLY rules.',
+	"$.['Target Service']",
+	6,
+	'/query',
+	0,
+	0,
+	NULL,
+	0,
+	0
+);
+
+SET @uuidAR = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidAR),
+	'AR_ONLY_SEARCH',
+	'FENCE rule for /search, could be combined with other AR_ONLY rules.',
+	"$.['Target Service']",
+	6,
+	'/search',
+	0,
+	0,
+	NULL,
+	0,
+	0
+);
+
+
 SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidGATE),
