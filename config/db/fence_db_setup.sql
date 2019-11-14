@@ -197,49 +197,28 @@ CREATE TABLE `access_rule` (
   CONSTRAINT `FK8rovvx363ui99ce21sksmg6uy` FOREIGN KEY (`subAccessRuleParent_uuid`) REFERENCES `access_rule` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-SET @uuidAR = REPLACE(UUID(),'-','');
+SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidAR),
-	'AR_ONLY_INFO',
-	'FENCE rule for /info, could be combined with other AR_ONLY rules.',
-	"$.['Target Service']",
-	6,
-	'/info',
-	0,
-	0,
-	NULL,
-	0,
-	0
+	'GATE_ONLY_INFO',
+	'FENCE rule for /info, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/info', 0, 0, NULL, 0, 0
 );
 
-SET @uuidAR = REPLACE(UUID(),'-','');
+SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidAR),
-	'AR_ONLY_QUERY',
-	'FENCE rule for /query, could be combined with other AR_ONLY rules.',
-	"$.['Target Service']",
-	6,
-	'/query',
-	0,
-	0,
-	NULL,
-	0,
-	0
+	'GATE_ONLY_QUERY',
+	'FENCE rule for /query, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/query', 0, 0, NULL, 0, 0
 );
 
-SET @uuidAR = REPLACE(UUID(),'-','');
+SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidAR),
-	'AR_ONLY_SEARCH',
-	'FENCE rule for /search, could be combined with other AR_ONLY rules.',
-	"$.['Target Service']",
-	6,
-	'/search',
-	0,
-	0,
-	NULL,
-	0,
-	0
+	'GATE_ONLY_SEARCH',
+	'FENCE rule for /search, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/search', 0, 0, NULL, 0, 0
 );
 
 
@@ -247,15 +226,8 @@ SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidGATE),
 	'GATE_FENCE_CONSENT_REQUIRED',
-	'Allow querys with consent requirement only.',
-	"$.query.query.expectedResultType",
-	10,
-	'DATAFRAME,DATAFRAME_MERGED,COUNT,CROSS_COUNT,OBSERVATION_COUNT',
-	0,
-	1,
-	NULL,
-	0,
-	0
+	'FENCE rule for allowing queries with consent requirement only.',
+	"$.query.query.expectedResultType", 10, 'DATAFRAME,DATAFRAME_MERGED,COUNT,CROSS_COUNT,OBSERVATION_COUNT', 0, 1, NULL, 0, 0
 );
 
 CREATE TABLE `accessRule_privilege` (
