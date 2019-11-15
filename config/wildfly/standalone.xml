@@ -443,8 +443,8 @@
         <subsystem xmlns="urn:jboss:domain:jsf:1.1"/>
         <subsystem xmlns="urn:jboss:domain:mail:3.0">
             <mail-session name="java:jboss/mail/gmail" from="${env.EMAIL_USERNAME_FROM:emailFromName}" jndi-name="java:jboss/mail/gmail" debug="false">
-                <smtp-server outbound-socket-binding-ref="mail-smtp-gmail" tls="true" 
-									username="${env.EMAIL_USERNAME:missingEmailUsername}" 
+                <smtp-server outbound-socket-binding-ref="mail-smtp-gmail" tls="true"
+									username="${env.EMAIL_USERNAME:missingEmailUsername}"
 										password="${env.EMAIL_PASSWORD:missingEmailPassword}" />
             </mail-session>
         </subsystem>
@@ -464,11 +464,21 @@
                 token.
                 -->
                 <simple name="java:global/SEARCH_TOKEN" value="${env.PICSURE_APP_TOKEN}" />
-								
+
                 <!-- psama configuration-->
                 <simple name="java:global/client_secret" value="${env.PSAMA_CLIENT_SECRET:missingSecret}"/>
                 <simple name="java:global/client_id" value="${env.PSAMA_CLIENT_ID:missingAndNotUsedWithFENCE}"/>
-								
+                <!-- Configure Identity Provider Parameters, with defaults-->
+                <simple name="java:global/idp_provider" value="fence"/>
+                <simple name="java:global/idp_provider_uri" value="https://staging.datastage.io" />
+
+                <simple name="java:global/fence_client_id" value="${env.FENCE_CLIENT_ID:missingFenceID}"/>
+                <simple name="java:global/fence_client_secret" value="${env.FENCE_CLIENT_SECRET:missingFenceSecret}"/>
+                <simple name="java:global/fence_redirect_back_url" value="https://datastage-i2b2-transmart-stage.aws.dbmi.hms.harvard.edu/psamaui/login/" />
+                <simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
+                <simple name="java:global/fence_standard_access_rules" value="${env.FENCE_STD_ACCESS_RULES:GATE_ONLY_INFO,GATE_ONLY_QUERY,GATE_ONLY_SEARCH,GATE_FENCE_CONSENT_REQUIRED}" />
+                <simple name="java:global/fence_consent_group_concept_path" value="${env.FENCE_CONSNTGRP_CONCEPT_PATH:\\_Consents\\Short Study Accession with Consent code\\}" />
+
                 <simple name="java:global/systemName" value="DataStageDev2"/>
                 <simple name="java:global/clientSecretIsBase64" value="False"/>
                 <simple name="java:global/userActivationTemplatePath" value="/psama/activation"/>
@@ -480,17 +490,7 @@
                 <simple name="java:global/deniedEmailEnabled" value="false" />
                 <simple name="java:global/adminUsers" value="ONLY_IF_DENIENDEMAIL_IS_TRUE" />
 
-
-                <!-- Configure Identity Provider Parameters, with defaults-->
-                <simple name="java:global/idp_provider" value="fence"/>
-                <simple name="java:global/idp_provider_uri" value="https://staging.datastage.io" />
-
-                <simple name="java:global/fence_client_id" value="${env.FENCE_CLIENT_ID:missingFenceID}"/>
-                <simple name="java:global/fence_client_secret" value="${env.FENCE_CLIENT_SECRET:missingFenceSecret}"/>
-                <simple name="java:global/fence_redirect_back_url" value="https://datastage-i2b2-transmart-stage.aws.dbmi.hms.harvard.edu/psamaui/login/" />
-                <simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
-
-                <!-- irct service -->
+                <!-- irct service, if configured -->
                 <simple name="java:global/domain" value="unused_but_required"/>
                 <simple name="java:global/redirect_on_success" value="/IRCT-UI/token.html"/>
                 <simple name="java:global/whitelist_enabled" value="false" type="boolean"/>

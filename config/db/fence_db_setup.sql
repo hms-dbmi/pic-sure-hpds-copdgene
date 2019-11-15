@@ -199,7 +199,7 @@ CREATE TABLE `access_rule` (
 
 SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
-	unhex(@uuidAR),
+	unhex(@uuidGATE),
 	'GATE_ONLY_INFO',
 	'FENCE rule for /info, could be combined with other GATE_ONLY rules.',
 	"$.['Target Service']", 6, '/info', 0, 0, NULL, 0, 0
@@ -207,7 +207,7 @@ INSERT INTO access_rule VALUES (
 
 SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
-	unhex(@uuidAR),
+	unhex(@uuidGATE),
 	'GATE_ONLY_QUERY',
 	'FENCE rule for /query, could be combined with other GATE_ONLY rules.',
 	"$.['Target Service']", 6, '/query', 0, 0, NULL, 0, 0
@@ -215,7 +215,7 @@ INSERT INTO access_rule VALUES (
 
 SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
-	unhex(@uuidAR),
+	unhex(@uuidGATE),
 	'GATE_ONLY_SEARCH',
 	'FENCE rule for /search, could be combined with other GATE_ONLY rules.',
 	"$.['Target Service']", 6, '/search', 0, 0, NULL, 0, 0
