@@ -478,6 +478,7 @@
                 <simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
                 <simple name="java:global/fence_standard_access_rules" value="${env.FENCE_STD_ACCESS_RULES:GATE_ONLY_INFO,GATE_ONLY_QUERY,GATE_ONLY_SEARCH,GATE_FENCE_CONSENT_REQUIRED}" />
                 <simple name="java:global/fence_consent_group_concept_path" value="${env.FENCE_CONSNTGRP_CONCEPT_PATH:\\_Consents\\Short Study Accession with Consent code\\}" />
+                <simple name="java:global/fence_harmonized_concept_path" value="" />
 
                 <simple name="java:global/systemName" value="DataStageDev2"/>
                 <simple name="java:global/clientSecretIsBase64" value="False"/>
