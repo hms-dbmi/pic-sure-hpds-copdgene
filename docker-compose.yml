@@ -94,6 +94,8 @@ services:
       - 3306:3306
     networks:
       - copdgene-hpds
+    env_file:
+      - ${ENV_FILE}
 
 networks:
   copdgene-hpds:
