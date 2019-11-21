@@ -91,7 +91,7 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:logging:5.0">
             <console-handler name="CONSOLE">
-                <level name="INFO"/>
+                <level name="DEBUG"/>
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"/>
                 </formatter>
@@ -114,7 +114,7 @@
                 <level name="WARN"/>
             </logger>
             <root-logger>
-                <level name="INFO"/>
+                <level name="DEBUG"/>
                 <handlers>
                     <handler name="CONSOLE"/>
                     <handler name="FILE"/>
@@ -478,8 +478,7 @@
                 <simple name="java:global/fence_mapping_url" value="${env.FENCE_MAPPING_URL:https://httpd/fence_mapping.json}" />
                 <simple name="java:global/fence_standard_access_rules" value="${env.FENCE_STD_ACCESS_RULES:GATE_ONLY_INFO,GATE_ONLY_QUERY,GATE_ONLY_SEARCH,GATE_FENCE_CONSENT_REQUIRED}" />
                 <simple name="java:global/fence_consent_group_concept_path" value="${env.FENCE_CONSNTGRP_CONCEPT_PATH:\\_Consents\\Short Study Accession with Consent code\\}" />
-                <simple name="java:global/fence_harmonized_concept_path" value="${env.FENCE_HARMONIZED_CONCEPT_PATH:" />
-                <simple name="java:global/fence_harmonized_concept_path" value="${env.FENCE_HARMONIZED_CONCEPT_PATH:DCC Harmonized data set" />
+                <simple name="java:global/fence_harmonized_concept_path" value="${env.FENCE_HARMONIZED_CONCEPT_PATH:DCC Harmonized data set}" />
 
                 <simple name="java:global/systemName" value="DataStageDev2"/>
                 <simple name="java:global/clientSecretIsBase64" value="False"/>
@@ -578,7 +577,7 @@
             </handlers>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:webservices:2.0">
-            <wsdl-host>${jboss.bind.address:127.0.0.1}</wsdl-host>
+            <wsdl-host>${jboss.bind.address:0.0.0.0}</wsdl-host>
             <endpoint-config name="Standard-Endpoint-Config"/>
             <endpoint-config name="Recording-Endpoint-Config">
                 <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
@@ -591,10 +590,10 @@
     </profile>
     <interfaces>
         <interface name="management">
-            <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
+            <inet-address value="${jboss.bind.address.management:0.0.0.0}"/>
         </interface>
         <interface name="public">
-            <inet-address value="${jboss.bind.address:127.0.0.1}"/>
+            <inet-address value="${jboss.bind.address:0.0.0.0}"/>
         </interface>
     </interfaces>
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">

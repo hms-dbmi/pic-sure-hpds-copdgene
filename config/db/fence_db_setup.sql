@@ -225,6 +225,39 @@ INSERT INTO access_rule VALUES (
 SET @uuidGATE = REPLACE(UUID(),'-','');
 INSERT INTO access_rule VALUES (
 	unhex(@uuidGATE),
+	'AR_ONLY_INFO',
+	'FENCE rule for /info, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/info', 0, 0, NULL, 0, 0
+);
+
+SET @uuidGATE = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidGATE),
+	'AR_ONLY_QUERY',
+	'FENCE rule for /query, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/query', 0, 0, NULL, 0, 0
+);
+
+SET @uuidGATE = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidGATE),
+	'AR_ONLY_SEARCH',
+	'FENCE rule for /search, could be combined with other GATE_ONLY rules.',
+	"$.['Target Service']", 6, '/search', 0, 0, NULL, 0, 0
+);
+
+SET @uuidGATE = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidGATE),
+	'AR_ALLOW_INFOCOLUMN',
+	'FENCE access rule for infocolumn.',
+	"$.query.query.expectedResultType", 4, 'INFO_COLUMN_LISTING', 0, 1, NULL, 0, 0
+);
+
+
+SET @uuidGATE = REPLACE(UUID(),'-','');
+INSERT INTO access_rule VALUES (
+	unhex(@uuidGATE),
 	'GATE_FENCE_CONSENT_REQUIRED',
 	'FENCE rule for allowing queries with consent requirement only.',
 	"$.query.query.expectedResultType", 10, 'DATAFRAME,DATAFRAME_MERGED,COUNT,CROSS_COUNT,OBSERVATION_COUNT', 0, 1, NULL, 0, 0

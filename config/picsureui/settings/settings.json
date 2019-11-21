@@ -1,15 +1,18 @@
 {
-  "resources":[
+	"resources": [
 		{
-			"id" : "COPDGene",
-			"name" : "COPDGene",
-			"basePath" : "/picsure",
-			"findPath" : "/PIC-SURE/search"
+			"id": "COPDGene",
+			"name": "COPDGene",
+			"basePath": "/picsure",
+			"findPath": "/PIC-SURE/search"
 		}
-		],
-  "helpLink": "about:blank",
-  "advancedSearchLink": "",
-  "picSureResourceId": "",
-  "categoryAliases": { },
-  "categorySearchResultList" : [  ]
- }
+	],
+	"helpLink": "about:blank",
+	"advancedSearchLink": "",
+	"picSureResourceId": "",
+	"categoryAliases": {
+	},
+	"categorySearchResultList": [
+
+	]
+}
