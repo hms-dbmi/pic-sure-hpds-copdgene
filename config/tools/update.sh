@@ -38,3 +38,12 @@ PSAMAUI_SETTINGS_FILE=${CONFIG_DIR}/httpd/psamaui/settings/settings.json
 sed -i 's,__FENCE_PROVIDER_URI__,'${FENCE_PROVIDER_URI}',' ${PSAMAUI_SETTINGS_FILE}
 sed -i 's,__FENCE_CLIENT_ID__,'${FENCE_CLIENT_ID}',' ${PSAMAUI_SETTINGS_FILE}
 sed -i 's,__FENCE_REDIRECT_BACK_URL__,'${FENCE_REDIRECT_BACK_URL}',' ${PSAMAUI_SETTINGS_FILE}
+
+cat $PSAMAUI_SETTINGS_FILE
+
+# Update the application token
+cd /home/centos/datastage
+docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "UPDATE application SET token = '${PICSURE_APP_TOKEN}';"
+docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "SELECT token FROM application;"
+
+
