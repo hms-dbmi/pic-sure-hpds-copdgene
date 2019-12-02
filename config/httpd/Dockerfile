@@ -10,7 +10,6 @@ FROM httpd:2.4.27-alpine
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
-
 COPY fence_mapping.json ${HTTPD_PREFIX}/htdocs/
 
 COPY cert/server.chain ${HTTPD_PREFIX}/cert/

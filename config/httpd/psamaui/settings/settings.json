@@ -1,0 +1,12 @@
+{
+  "servicesPath" : "/psama",
+  "basePath" : "/psama",
+  "uiPath": "",
+  "helpLink": "",
+  "customizeAuth0Login": true,
+  "client_id": "ThisIsDefinedAheadOfTimeBySomeoneElse",
+  "idp_provider":"fence",
+  "idp_provider_uri":"__FENCE_PROVIDER_URI__",
+  "fence_client_id":"__FENCE_CLIENT_ID__",
+  "fence_redirect_url":"__FENCE_REDIRECT_URL__"
+}
