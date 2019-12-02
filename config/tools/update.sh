@@ -14,7 +14,7 @@ fatal_error() {
 
 if [ "${CONFIG_DIR}" == "" ];
 then
-  fata_error "CONFIG_DIR variable is not set or empty :("
+  fatal_error "CONFIG_DIR variable is not set or empty :("
 fi
 [ -d $CONFIG_DIR ] && echo "CONFIG_DIR is set to ${CONFIG_DIR}" || fatal_error "CONFIG_DIR is set to an invalid directory. ${CONFIG_DIR}"
 # Re-create config directory
