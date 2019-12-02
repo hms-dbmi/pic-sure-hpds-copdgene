@@ -15,9 +15,9 @@ services:
       - 8787
     user: root
     depends_on:
-      - db
       - copy-picsure2-war
       - copy-picsureauth-war
+      - db
     ports:
       - 9990:9990
       - 8787:8787
