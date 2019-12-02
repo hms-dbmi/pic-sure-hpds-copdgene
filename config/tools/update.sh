@@ -37,7 +37,7 @@ PSAMAUI_SETTINGS_FILE=${CONFIG_DIR}/httpd/psamaui/settings/settings.json
 # Replace placeholder variables, from the UNIX environment variables
 sed -i 's,__FENCE_PROVIDER_URI__,'${FENCE_PROVIDER_URI}',' ${PSAMAUI_SETTINGS_FILE}
 sed -i 's,__FENCE_CLIENT_ID__,'${FENCE_CLIENT_ID}',' ${PSAMAUI_SETTINGS_FILE}
-sed -i 's,__FENCE_REDIRECT_BACK_URL__,'${FENCE_REDIRECT_BACK_URL}',' ${PSAMAUI_SETTINGS_FILE}
+sed -i 's,__FENCE_REDIRECT_URL__,'${FENCE_REDIRECT_URL}',' ${PSAMAUI_SETTINGS_FILE}
 
 cat $PSAMAUI_SETTINGS_FILE
 
