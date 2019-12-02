@@ -50,14 +50,19 @@ services:
 
   httpd:
     build:
-      context: ./httpd
+      context: ${CONFIG_DIR}/httpd
       dockerfile: Dockerfile
     networks:
       - copdgene-hpds
     restart: always
+    volumes:
+      - ${CONFIG_DIR}/httpd/picsureui/settings/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
+      - ${CONFIG_DIR}/httpd/psamaui/settings/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
     ports:
       - 80:80
       - 443:443
+    env_file:
+      - ${ENV_FILE}
 
   copy-picsure2-war:
     image: dbmi/picsure2:master.5ec432235ed1

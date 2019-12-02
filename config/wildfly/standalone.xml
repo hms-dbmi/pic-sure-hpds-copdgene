@@ -470,7 +470,7 @@
                 <simple name="java:global/client_id" value="${env.PSAMA_CLIENT_ID:missingAndNotUsedWithFENCE}"/>
                 <!-- Configure Identity Provider Parameters, with defaults-->
                 <simple name="java:global/idp_provider" value="fence"/>
-                <simple name="java:global/idp_provider_uri" value="https://staging.datastage.io" />
+                <simple name="java:global/idp_provider_uri" value="${env.FENCE_PROVIDER_URI}" />
 
                 <simple name="java:global/fence_client_id" value="${env.FENCE_CLIENT_ID:missingFenceID}"/>
                 <simple name="java:global/fence_client_secret" value="${env.FENCE_CLIENT_SECRET:missingFenceSecret}"/>
