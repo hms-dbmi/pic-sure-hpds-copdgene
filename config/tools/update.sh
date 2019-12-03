@@ -43,7 +43,7 @@ cat $PSAMAUI_SETTINGS_FILE
 
 # Update the application token
 cd /home/centos/datastage
-docker-compose exec -it db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "UPDATE application SET token = '${PICSURE_APP_TOKEN}';"
-docker-compose exec -it db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "SELECT token FROM application;"
+docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "UPDATE application SET token = '${PICSURE_APP_TOKEN}';"
+docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "SELECT token FROM application;"
 
 
