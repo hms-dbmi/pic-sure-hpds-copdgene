@@ -22,6 +22,7 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 			prepare: function(){
 				$("#download-btn", this.$el).attr("href", "");
 				$("#download-btn", this.$el).addClass('hidden');
+				$("#download-btn", this.$el).off('click');
 				$("#copy-queryid-btn", this.$el).addClass('hidden');
 				var spinTrigger = $.Deferred();
 				spinner.large(spinTrigger, "#download-spinner", "download-spinner");				
