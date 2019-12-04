@@ -91,7 +91,7 @@
     <profile>
         <subsystem xmlns="urn:jboss:domain:logging:5.0">
             <console-handler name="CONSOLE">
-                <level name="DEBUG"/>
+                <level name="INFO"/>
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"/>
                 </formatter>
@@ -113,8 +113,16 @@
             <logger category="sun.rmi">
                 <level name="WARN"/>
             </logger>
-            <root-logger>
+
+            <logger category="org.apache.http.wire">
+              <level name="WARN"/>
+            </logger>
+            <logger category="edu.harvard">
                 <level name="DEBUG"/>
+            </logger>
+
+            <root-logger>
+                <level name="INFO"/>
                 <handlers>
                     <handler name="CONSOLE"/>
                     <handler name="FILE"/>
