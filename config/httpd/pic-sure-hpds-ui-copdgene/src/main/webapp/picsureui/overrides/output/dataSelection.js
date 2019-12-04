@@ -20,7 +20,6 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 					.concat(_.keys(query.query.numericFilters)));
 			},
 			prepare: function(){
-				$("#prepare-btn", this.$el).addClass("hidden");
 				$("#download-btn", this.$el).attr("href", "");
 				$("#download-btn", this.$el).addClass('hidden');
 				$("#copy-queryid-btn", this.$el).addClass('hidden');
