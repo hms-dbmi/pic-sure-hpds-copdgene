@@ -46,4 +46,9 @@ cd /home/centos/datastage
 docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "UPDATE application SET token = '${PICSURE_APP_TOKEN}';"
 docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "SELECT token FROM application;"
 
+# Add the predefined privileges to the PSAMA database
+DB_CONTAINER_NAME=$(docker ps --all --format {{.Names}} | grep _db_)
+docker cp ${CONFIG_DIR}/db/role_priv.sql ${DB_CONTAINER_NAME}:/tmp/role_priv.sql
+docker-compose exec db sh -c 'mysql -u root --password=${PSAMA_DB_PASSWORD} auth < /tmp/role_priv.sql'
+
 
