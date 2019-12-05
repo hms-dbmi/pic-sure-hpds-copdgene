@@ -100,6 +100,7 @@ define(["backbone","handlebars", "text!header/header.hbs", "common/session", "pi
                 if (window.location.pathname == "/psamaui/userProfile"){
                     applicationFunctions.fetchApplications(this, function(applications){
                         this.$el.html(this.template({
+                            logoPath: '/DataStage-logo.png', 
                             privileges: [],
                             applications: applications
                                 .filter(function (app) {
