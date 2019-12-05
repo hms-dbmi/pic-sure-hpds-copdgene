@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 # Setup error handler
 set -E
@@ -33,22 +33,38 @@ source $ENV_FILE
 
 # Find the PSAMA UI settings file
 PSAMAUI_SETTINGS_FILE=${CONFIG_DIR}/httpd/psamaui/settings/settings.json
-
 # Replace placeholder variables, from the UNIX environment variables
-sed -i 's,__FENCE_PROVIDER_URI__,'${FENCE_PROVIDER_URI}',' ${PSAMAUI_SETTINGS_FILE}
-sed -i 's,__FENCE_CLIENT_ID__,'${FENCE_CLIENT_ID}',' ${PSAMAUI_SETTINGS_FILE}
-sed -i 's,__FENCE_REDIRECT_URL__,'${FENCE_REDIRECT_URL}',' ${PSAMAUI_SETTINGS_FILE}
-
+if [ $(uname) == "Darwin" ];
+then
+  echo "This is running on a MacOSX system"
+  sed -i '' 's,__FENCE_PROVIDER_URI__,'${FENCE_PROVIDER_URI}',' ${PSAMAUI_SETTINGS_FILE}
+  sed -i '' 's,__FENCE_CLIENT_ID__,'${FENCE_CLIENT_ID}',' ${PSAMAUI_SETTINGS_FILE}
+  sed -i '' 's,__FENCE_REDIRECT_URL__,'${FENCE_REDIRECT_URL}',' ${PSAMAUI_SETTINGS_FILE}
+else
+  sed -i 's,__FENCE_PROVIDER_URI__,'${FENCE_PROVIDER_URI}',' ${PSAMAUI_SETTINGS_FILE}
+  sed -i 's,__FENCE_CLIENT_ID__,'${FENCE_CLIENT_ID}',' ${PSAMAUI_SETTINGS_FILE}
+  sed -i 's,__FENCE_REDIRECT_URL__,'${FENCE_REDIRECT_URL}',' ${PSAMAUI_SETTINGS_FILE}
+fi
+echo "*** The PSAMA UI Settings File is now ***"
 cat $PSAMAUI_SETTINGS_FILE
 
 # Update the application token
-cd /home/centos/datastage
+if [ $(uname) == "Darwin" ];
+then
+  cd $HOME/git/pic-sure-hpds-copdgene
+else
+  cd /home/centos/datastage
+fi
+
 docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "UPDATE application SET token = '${PICSURE_APP_TOKEN}';"
 docker-compose exec db mysql -u root --password=${PSAMA_DB_PASSWORD} auth -e "SELECT token FROM application;"
 
 # Add the predefined privileges to the PSAMA database
 DB_CONTAINER_NAME=$(docker ps --all --format {{.Names}} | grep _db_)
-docker cp ${CONFIG_DIR}/db/role_priv.sql ${DB_CONTAINER_NAME}:/tmp/role_priv.sql
-docker-compose exec db sh -c 'mysql -u root --password=${PSAMA_DB_PASSWORD} auth < /tmp/role_priv.sql'
-
-
+if [ "${DB_CONTAINER_NAME}" == "" ];
+then
+  echo "Database container is down."
+else
+  docker cp ${CONFIG_DIR}/db/role_priv.sql ${DB_CONTAINER_NAME}:/tmp/role_priv.sql
+  docker-compose exec db sh -c 'mysql -u root --password=${PSAMA_DB_PASSWORD} auth < /tmp/role_priv.sql'
+fi
