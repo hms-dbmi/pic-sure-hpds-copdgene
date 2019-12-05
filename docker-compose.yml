@@ -74,7 +74,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: dbmi/pic-sure-auth-services:fence-integration.7766a4a7429a
+    image: dbmi/pic-sure-auth-services:fence-integration.807135c35232
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
