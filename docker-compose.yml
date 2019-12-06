@@ -65,7 +65,7 @@ services:
       - ${ENV_FILE}
 
   copy-picsure2-war:
-    image: dbmi/picsure2:master.5ec432235ed1
+    image: dbmi/picsure2:master_bed61275
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
