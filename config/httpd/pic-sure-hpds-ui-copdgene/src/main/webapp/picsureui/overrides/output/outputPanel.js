@@ -76,7 +76,6 @@ define(["text!../settings/settings.json","common/spinner", "output/dataSelection
 						$("#patient-count").html(message);
 					}.bind(this);
 
-					console.log("Skipping query line 84 of outputPanel.js");
 					$.ajax({
 					 	url: window.location.origin + "/picsure/query/sync",
 					 	type: 'POST',

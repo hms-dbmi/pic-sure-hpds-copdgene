@@ -2,9 +2,8 @@
     <div class="category-restriction-type-row">
 	<div class="category-filter-restriction-container">
 		<select type="radio" class="form-control category-filter-restriction">
-			<option value="ANY">Allow Any Value (exclude missing data)</option>
 			<option value="RESTRICT" {{#if constrainValueOne.length}}selected{{/if}} >Restrict By Value</option>
-
+			<option value="ANY">Allow Any Value (exclude missing data)</option>
 		</select>
 	</div>
 	 <div class="constrain-search-button">
@@ -13,7 +12,7 @@
 
     </div>
 
-    <div class="category-filter-lists {{#unless constrainValueOne.length}}hidden{{/unless}}">
+    <div class="category-filter-lists">
 	    <div class="col-md-3 constrain-filter-btn resizable-select-div">
 		<div class="constrain-filter-label">Available Values</div>
 		<input  class="form-control category-filter" placeholder="Filter..." value="" ></input>

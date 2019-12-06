@@ -89,11 +89,12 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 					data: "{}",
 					success: function(response){
 						responseDataUrl = URL.createObjectURL(new Blob([response], {type: "octet/stream"}));
+						$("#download-btn", this.$el).off('click');
 						$("#download-btn", this.$el).attr("href", responseDataUrl);
 						console.log("done preparing");
 						//now the download button will return the data from memory; 
 						// but we don't want to make the user click twice;  lets click for them!
-						$("#download-btn", this.$el).click();
+						$("#download-btn", this.$el)[0].click();
 					}.bind(this),
 					error: function(response){
 						console.log("error preparing download : ");
