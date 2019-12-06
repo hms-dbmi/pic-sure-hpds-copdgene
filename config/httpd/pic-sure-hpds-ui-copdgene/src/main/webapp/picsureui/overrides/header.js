@@ -5,6 +5,6 @@ define([], function(){
 		 *
 		 * This should be a String value.
 		 */
-		logoPath : "static/logo.png"
+		logoPath : "/DataStage-logo.png"
 	};
 });
