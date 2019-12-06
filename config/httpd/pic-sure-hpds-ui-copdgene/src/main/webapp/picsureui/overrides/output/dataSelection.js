@@ -60,7 +60,7 @@ define(["common/spinner", "backbone", "handlebars", "text!output/dataSelection.h
 							} else if ( status == "AVAILABLE" ){
 								spinTrigger.resolve();
 								$("#download-btn", this.$el).removeClass('hidden');
-								$("#download-btn", this.$el).click(function(){this.downloadData(respJson.picsureResultId, query)}.bind(this));
+								$("#download-btn", this.$el).one('click', function(){this.downloadData(respJson.picsureResultId, query)}.bind(this));
 								$("#copy-queryid-btn", this.$el).removeClass('hidden');
 								return;
 							}
