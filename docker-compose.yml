@@ -6,6 +6,7 @@ services:
     volumes:
       - ${CONFIG_DIR}/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
       - ${CONFIG_DIR}/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      - ${CONFIG_DIR}/wildfly/templates/:/usr/local/share/applications/
       - ${CONFIG_DIR}/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     networks:
       - copdgene-hpds
@@ -74,7 +75,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: dbmi/pic-sure-auth-services:fence-integration.7fe6556e6874
+    image: dbmi/pic-sure-auth-services:fence-integration.e791347bb7ef
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
