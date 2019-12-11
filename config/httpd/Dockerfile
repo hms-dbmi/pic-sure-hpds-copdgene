@@ -1,6 +1,6 @@
 FROM dbmi/pic-sure-hpds-ui:master.0800720 AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:master.a34a43e as psama-ui
-FROM dbmi/pic-sure-auth-ui:fence-integration.07ae5e7ea223 as psama-fence-ui
+FROM dbmi/pic-sure-auth-ui:fence-integration.7e46cdb1fe84 as psama-fence-ui
 FROM httpd:2.4.27-alpine
 
 #RUN apk add --update gcc musl-dev python3-dev libffi-dev libressl-dev jq
@@ -10,7 +10,6 @@ FROM httpd:2.4.27-alpine
 # Replace virtual host config file with ours
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
-COPY fence_mapping.json ${HTTPD_PREFIX}/htdocs/
 
 COPY cert/server.chain ${HTTPD_PREFIX}/cert/
 COPY cert/server.key ${HTTPD_PREFIX}/cert/
