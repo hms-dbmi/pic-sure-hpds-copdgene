@@ -51,7 +51,8 @@ services:
 
   httpd:
     build:
-      context: ${CONFIG_DIR}/httpd
+      # This will overwrite the certs inside the newly created image
+      context: config/httpd
       dockerfile: Dockerfile
     networks:
       - copdgene-hpds
@@ -59,6 +60,9 @@ services:
     volumes:
       - ${CONFIG_DIR}/httpd/picsureui/settings/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
       - ${CONFIG_DIR}/httpd/psamaui/settings/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
+      # This will pull in the certificates, from the host.
+      - ${CONFIG_DIR}/httpd/cert/:/usr/local/apache2/cert/
+      - ${CONFIG_DIR}/static/:/usr/local/apache2/htdocs/static/images/
     ports:
       - 80:80
       - 443:443

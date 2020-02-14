@@ -11,6 +11,10 @@ FROM httpd:2.4.27-alpine
 COPY httpd-vhosts.conf ${HTTPD_PREFIX}/conf/extra/httpd-vhosts.conf
 COPY DataStage-logo.png ${HTTPD_PREFIX}/htdocs/
 
+# The certificate files in this directory (./config/httpd) are for use as
+# a self signed certificates. If real certificates needed to run the `httpd`
+# container, the $CONFIG_DIR/httpd/cert directory needs to have the real
+# certificate files.
 COPY cert/server.chain ${HTTPD_PREFIX}/cert/
 COPY cert/server.key ${HTTPD_PREFIX}/cert/
 COPY cert/server.crt ${HTTPD_PREFIX}/cert/
