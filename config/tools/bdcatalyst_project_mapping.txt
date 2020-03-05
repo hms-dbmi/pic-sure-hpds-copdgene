@@ -1,0 +1,42 @@
+Amish||phs000956.v3.p1|||
+ARIC|Atherosclerosis Risk in Communities (ARIC) Cohort|DS, CV, IRB, MDS|phs000280.v5.p1.c2
+ARIC|Atherosclerosis Risk in Communities (ARIC) Cohort|HMB, IRB|phs000280.v5.p1.c1
+BAGS||phs001143.v2.p1|||
+CARDIA|CARDIA Cohort|HMB, IRB|phs000285.v3.p2.c1
+CCAF||phs001143.v2.p1|||
+CFS|NHLBI Cleveland Family Study (CFS) Candidate Gene Association Resource (CARe)|DS, HLBS, IRB, NPU|phs000284.v2.p1.c1
+CHS|Cardiovascular Health Study (CHS)|DS, CV, IRB, MDS|phs000287.v6.p1.c3
+CHS|Cardiovascular Health Study (CHS)|DS, CV, IRB, NPU, MDS|phs000287.v6.p1.c4
+CHS|Cardiovascular Health Study (CHS)|HMB, IRB, MDS|phs000287.v6.p1.c1
+CHS|Cardiovascular Health Study (CHS)|HMB, IRB, NPU, MDS|phs000287.v6.p1.c2
+COPDGene|Genetic Epidemiology of COPD (COPDGene)|DS, COPD and Smoking|phs000179.v6.p2.c2
+COPDGene|Genetic Epidemiology of COPD (COPDGene)|HMB|phs000179.v6.p2.c1
+CRA||phs000988.v3.p1|||
+DHS||phs001412.v1.p1|||
+FHS|Framingham Cohort|HMB, IRB, MDS|phs000007.v30.p11.c1
+FHS|Framingham Cohort|HMB, IRB, NPU, MDS|phs000007.v30.p11.c2
+GALAII||phs001180.v1.p1|||
+GeneSTAR||phs001218.v1.p1|||
+GENOA||phs001238.v2.p1|||
+GenSALT|Genetic Epidemiology Network of Salt Sensitivity (GenSalt)|GRU, IRB|phs000784.v2.p1.c1
+GOLDN|Genetics of Lipid Lowering Drugs and Diet Network Study (GOLDN): GWAS|DS, CV, IRB|phs000741.v2.p1.c1
+HCHS_SOL|Hispanic Community Health Study / Study of Latinos (HCHS/SOL)|HMB, NPU|phs000810.v1.p1.c1
+HCHS_SOL|Hispanic Community Health Study / Study of Latinos (HCHS/SOL)|HMB|phs000810.v1.p1.c2
+HVH|Heart and Vascular Health Study (HVH)|DS, CV, IRB, MDS|phs001013.v3.p2.c2
+HVH|Heart and Vascular Health Study (HVH)|HMB, IRB, MDS|phs001013.v3.p2.c1
+JHS|The Jackson Heart Study (JHS)|DS, FDO, IRB, NPU|phs000286.v6.p2.c2
+JHS|The Jackson Heart Study (JHS)|DS, FDO, IRB|phs000286.v6.p2.c4
+JHS|The Jackson Heart Study (JHS)|HMB, IRB, NPU|phs000286.v6.p2.c1
+JHS|The Jackson Heart Study (JHS)|HMB, IRB|phs000286.v6.p2.c3
+Mayo_VTE|GENEVA GWAS of Venous Thrombosis|GRU|phs000289.v2.p1.c1
+MESA|MESA Cohort|HMB,NPU|phs000209.v13.p3.c2
+MESA|MESA Cohort|HMB|phs000209.v13.p3.c1
+MGH_AF||phs001062.v3.p2|||
+Partners|NHLBI TOPMed: Partners HealthCare Biobank|HMB|phs001024.v3.p1.c1
+SAFS|T2D-GENES: San Antonio Mexican American Family Studies (SAMAFS)|DS, Diabetes, IRB, RD|phs000847.v2.p1.c1
+SAGE|NHLBI TOPMed: Study of African Americans, Asthma, Genes and Environment (SAGE) Study|DS, Lung Disease|phs000921.v3.p1.c2
+SAS|Genome-wide Association Study of Adiposity in Samoans|GRU, IRB, PUB, COL, NPU, GSO|phs000914.v1.p1.c1
+VAFAR|NHLBI TOPMed: The Vanderbilt AF Ablation Registry|HMB, IRB|phs000997.v3.p2.c1
+VU_AF||phs001032.v4.p2|||
+WGHS||phs001040.v3.p1|||
+WHI|WHI Cohort|HMB,IRB|phs000200.v11.p3.c1

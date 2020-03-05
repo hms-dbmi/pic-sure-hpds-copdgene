@@ -1,0 +1,588 @@
+{
+    "projects": [
+        {
+            "key": "phs000280.v5.p1.c2",
+            "name": "ARIC",
+            "code": "phs000280",
+            "description": "Atherosclerosis Risk in Communities (ARIC) Cohort",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "CV"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000285.v3.p2.c1",
+            "name": "CARDIA",
+            "code": "phs000285",
+            "description": "CARDIA Cohort",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000284.v2.p1.c1",
+            "name": "CFS",
+            "code": "phs000284",
+            "description": "NHLBI Cleveland Family Study (CFS) Candidate Gene Association Resource (CARe)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "HLBS"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000287.v6.p1.c3",
+            "name": "CHS",
+            "code": "phs000287",
+            "description": "Cardiovascular Health Study (CHS)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c3",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "CV"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c4",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "CV"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000179.v6.p2.c2",
+            "name": "COPDGene",
+            "code": "phs000179",
+            "description": "Genetic Epidemiology of COPD (COPDGene)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "COPDandSmoking"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000007.v30.p11.c1",
+            "name": "FHS",
+            "code": "phs000007",
+            "description": "Framingham Cohort",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000784.v2.p1.c1",
+            "name": "GenSALT",
+            "code": "phs000784",
+            "description": "Genetic Epidemiology Network of Salt Sensitivity (GenSalt)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "GRU"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000741.v2.p1.c1",
+            "name": "GOLDN",
+            "code": "phs000741",
+            "description": "Genetics of Lipid Lowering Drugs and Diet Network Study (GOLDN): GWAS",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "CV"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000810.v1.p1.c1",
+            "name": "HCHS_SOL",
+            "code": "phs000810",
+            "description": "Hispanic Community Health Study \/ Study of Latinos (HCHS\/SOL)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "NPU"
+                        }
+                    ]
+                },
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs001013.v3.p2.c2",
+            "name": "HVH",
+            "code": "phs001013",
+            "description": "Heart and Vascular Health Study (HVH)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "CV"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "MDS"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000286.v6.p2.c2",
+            "name": "JHS",
+            "code": "phs000286",
+            "description": "The Jackson Heart Study (JHS)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "FDO"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        }
+                    ]
+                },
+                {
+                    "code": "c4",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "FDO"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "NPU"
+                        }
+                    ]
+                },
+                {
+                    "code": "c3",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000289.v2.p1.c1",
+            "name": "Mayo_VTE",
+            "code": "phs000289",
+            "description": "GENEVA GWAS of Venous Thrombosis",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "GRU"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000209.v13.p3.c2",
+            "name": "MESA",
+            "code": "phs000209",
+            "description": "MESA Cohort",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "NPU"
+                        }
+                    ]
+                },
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs001024.v3.p1.c1",
+            "name": "Partners",
+            "code": "phs001024",
+            "description": "NHLBI TOPMed: Partners HealthCare Biobank",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000847.v2.p1.c1",
+            "name": "SAFS",
+            "code": "phs000847",
+            "description": "T2D-GENES: San Antonio Mexican American Family Studies (SAMAFS)",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "Diabetes"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "RD"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000921.v3.p1.c2",
+            "name": "SAGE",
+            "code": "phs000921",
+            "description": "NHLBI TOPMed: Study of African Americans, Asthma, Genes and Environment (SAGE) Study",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c2",
+                    "names": [
+                        {
+                            "name": "DS"
+                        },
+                        {
+                            "name": "LungDisease"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000914.v1.p1.c1",
+            "name": "SAS",
+            "code": "phs000914",
+            "description": "Genome-wide Association Study of Adiposity in Samoans",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "GRU"
+                        },
+                        {
+                            "name": "IRB"
+                        },
+                        {
+                            "name": "PUB"
+                        },
+                        {
+                            "name": "COL"
+                        },
+                        {
+                            "name": "NPU"
+                        },
+                        {
+                            "name": "GSO"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000997.v3.p2.c1",
+            "name": "VAFAR",
+            "code": "phs000997",
+            "description": "NHLBI TOPMed: The Vanderbilt AF Ablation Registry",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "phs000200.v11.p3.c1",
+            "name": "WHI",
+            "code": "phs000200",
+            "description": "WHI Cohort",
+            "concept_path": "\\\\\\_Consents\\Study Accession with Consent Code\\\\\\",
+            "consent_groups": [
+                {
+                    "code": "c1",
+                    "names": [
+                        {
+                            "name": "HMB"
+                        },
+                        {
+                            "name": "IRB"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

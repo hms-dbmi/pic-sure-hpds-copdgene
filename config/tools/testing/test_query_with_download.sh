@@ -54,7 +54,7 @@ rm -f query_response.json
 # Download/Show result
 curl "https://${HOSTNAME}/picsure/query/${QUERY_ID}/result" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer ${USER_TOKEN}"
+	-H "Authorization: Bearer ${TOKEN_ERA_LONGTERM}"
 
 
 

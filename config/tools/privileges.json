@@ -1,0 +1,1461 @@
+{
+    "privileges": [
+        {
+            "name": "PRIV_FENCE_phs000280_c2",
+            "description": "Access for ARIC project, but only for DS and CV and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-CV-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000280_c1",
+            "description": "Access for ARIC project, but only for HMB and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000285_c1",
+            "description": "Access for CARDIA project, but only for HMB and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000284_c1",
+            "description": "Access for CFS project, but only for DS and HLBS and IRB and NPU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-HLBS-IRB-NPU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000287_c3",
+            "description": "Access for CHS project, but only for DS and CV and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-CV-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000287_c4",
+            "description": "Access for CHS project, but only for DS and CV and IRB and NPU and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-CV-IRB-NPU-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000287_c1",
+            "description": "Access for CHS project, but only for HMB and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000287_c2",
+            "description": "Access for CHS project, but only for HMB and IRB and NPU and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-NPU-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000179_c2",
+            "description": "Access for COPDGene project, but only for DS and COPDandSmoking groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-COPDandSmoking_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000179_c1",
+            "description": "Access for COPDGene project, but only for HMB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000007_c1",
+            "description": "Access for FHS project, but only for HMB and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000007_c2",
+            "description": "Access for FHS project, but only for HMB and IRB and NPU and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-NPU-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000784_c1",
+            "description": "Access for GenSALT project, but only for GRU and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_GRU-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000741_c1",
+            "description": "Access for GOLDN project, but only for DS and CV and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-CV-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000810_c1",
+            "description": "Access for HCHS_SOL project, but only for HMB and NPU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-NPU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000810_c2",
+            "description": "Access for HCHS_SOL project, but only for HMB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs001013_c2",
+            "description": "Access for HVH project, but only for DS and CV and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-CV-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs001013_c1",
+            "description": "Access for HVH project, but only for HMB and IRB and MDS groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-MDS_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000286_c2",
+            "description": "Access for JHS project, but only for DS and FDO and IRB and NPU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-FDO-IRB-NPU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000286_c4",
+            "description": "Access for JHS project, but only for DS and FDO and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-FDO-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000286_c1",
+            "description": "Access for JHS project, but only for HMB and IRB and NPU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB-NPU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000286_c3",
+            "description": "Access for JHS project, but only for HMB and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000289_c1",
+            "description": "Access for Mayo_VTE project, but only for GRU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_GRU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000209_c2",
+            "description": "Access for MESA project, but only for HMB and NPU groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-NPU_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000209_c1",
+            "description": "Access for MESA project, but only for HMB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs001024_c1",
+            "description": "Access for Partners project, but only for HMB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000847_c1",
+            "description": "Access for SAFS project, but only for DS and Diabetes and IRB and RD groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-Diabetes-IRB-RD_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000921_c2",
+            "description": "Access for SAGE project, but only for DS and LungDisease groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_DS-LungDisease_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000914_c1",
+            "description": "Access for SAS project, but only for GRU and IRB and PUB and COL and NPU and GSO groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_GRU-IRB-PUB-COL-NPU-GSO_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000997_c1",
+            "description": "Access for VAFAR project, but only for HMB and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        },
+        {
+            "name": "PRIV_FENCE_phs000200_c1",
+            "description": "Access for WHI project, but only for HMB and IRB groups",
+            "queryTemplate": "",
+            "queryScope": "",
+            "access_rules": {
+                "name": "AR_HMB-IRB_only",
+                "description": "only consent group HMB included can pass the check",
+                "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                "value": "COPD_HMB",
+                "type": 4,
+                "type_description": "ALL_EQUALS",
+                "gates": [
+                    {
+                        "name": "gate_expectedResultType",
+                        "description": "",
+                        "rule": "$..categoryFilters.['\\_Consents\\Study Accession with Consent Code\\']",
+                        "value": "COPD_HMB",
+                        "type": 6,
+                        "type_description": "ALL_CONTAINS_IGNORE_CASE",
+                        "checkMapKeyOnly": true,
+                        "checkMapNode": false,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    },
+                    {
+                        "name": "gate_if_info_column_listing",
+                        "description": "INFO_COLUMN_LISTING will not pass the gate",
+                        "rule": "$.query.query.expectedResultType",
+                        "value": "INFO_COLUMN_LISTING",
+                        "type": 3,
+                        "type_description": "NOT_EQUALS",
+                        "checkMapKeyOnly": false,
+                        "checkMapNode": true,
+                        "subAccessRuleParent_uuid": "",
+                        "isGateAnyRelation": false,
+                        "isEvaluateOnlyByGates": false
+                    }
+                ],
+                "checkMapKeyOnly": true,
+                "checkMapNode": false,
+                "subAccessRuleParent_uuid": "",
+                "isGateAnyRelation": false,
+                "isEvaluateOnlyByGates": false
+            }
+        }
+    ]
+}

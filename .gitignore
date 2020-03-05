@@ -6,3 +6,4 @@ config/hpds
 
 search_full.json
 .env
+config/tools/venv

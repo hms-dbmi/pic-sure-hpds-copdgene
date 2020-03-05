@@ -18,7 +18,6 @@ services:
     depends_on:
       - copy-picsure2-war
       - copy-picsureauth-war
-      - db
     ports:
       - 9990:9990
       - 8787:8787
@@ -79,7 +78,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
 
   copy-picsureauth-war:
-    image: dbmi/pic-sure-auth-services:fence-integration.7e46cdb1fe84
+    image: dbmi/pic-sure-auth-services:fence-integration.e1cebfc3d0e4
     user: root
     volumes:
       - ${CONFIG_DIR}/wildfly/:/opt/local/docker-config/wildfly/
@@ -90,22 +89,22 @@ services:
   # This is just a temporary solution. The database, for PSAMA and PICSURE
   # will not be running, in PROD, on the same docker engine as the other
   # containers.
-  db:
-    build:
-      context: config/db
-      dockerfile: Dockerfile
-    environment:
-      - MYSQL_ROOT_PASSWORD=${AUTH_MYSQL_ROOT_PASSWORD:-password}
-      - MYSQL_DATABASE=auth
-    restart: always
-    expose:
-      - 3306
-    ports:
-      - 3306:3306
-    networks:
-      - copdgene-hpds
-    env_file:
-      - ${ENV_FILE}
+#  db:
+#    build:
+#      context: config/db
+#      dockerfile: Dockerfile
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=${AUTH_MYSQL_ROOT_PASSWORD:-password}
+#      - MYSQL_DATABASE=auth
+#    restart: always
+#    expose:
+#      - 3306
+#    ports:
+#      - 3306:3306
+#    networks:
+#      - copdgene-hpds
+#    env_file:
+#      - ${ENV_FILE}
 
 networks:
   copdgene-hpds:
