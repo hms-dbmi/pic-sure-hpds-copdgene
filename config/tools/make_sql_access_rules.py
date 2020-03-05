@@ -48,6 +48,42 @@ archived_access_rules = [
     }
 ]
 
+rule_types = {
+    'NOT_CONTAINS': 1,
+    'NOT_CONTAINS_IGNORE_CASE': 2,
+    'NOT_EQUALS': 3,
+    'ALL_EQUALS': 4,
+    'ALL_CONTAINS': 5,
+    'ALL_CONTAINS_IGNORE_CASE': 6,
+    'ANY_CONTAINS': 7,
+    'NOT_EQUALS_IGNORE_CASE': 8,
+    'ALL_EQUALS_IGNORE_CASE': 9,
+    'ANY_EQUALS': 10,
+    'ALL_REG_MATCH': 11,
+    'ANY_REG_MATCH': 12,
+    'IS_EMPTY': 13,
+    'IS_NOT_EMPTY': 14,
+}
+
+concept_path_name = '\\\\00 Consent groups\\\\'
+picsure_application_uuid = '38bad539-8b96-4e71-8a83-bba61961e60a'
+
+def get_access_group(groupnames):
+    return {
+        "name": "AR_FENCE_{}_only".format(groupnames),
+        "description": 'Consent group{} {} only'.format( 's' if len(groupnames.split('-')) > 1 else '', ','.join(groupnames.split('-'))),
+        "type": get_rule_type('ANY_CONTAINS'),
+        "rule": "$..categoryFilters.['{}']".format(concept_path_name),
+        "value": groupnames,
+        "gates": [
+            {"uuid": get_gate_uuid('gate_if_info_column_listing')},
+            {"uuid": get_gate_uuid('gate_expectedResultType')}
+        ],
+        "checkMapNode": True,
+        "checkMapKeyOnly": False
+    }
+
+
 print("""
 
 DELETE FROM `accessRule_gate` WHERE `accessRule_id` IN (SELECT `uuid` FROM `access_rule` WHERE `name` LIKE 'AR_FENCE_%');
