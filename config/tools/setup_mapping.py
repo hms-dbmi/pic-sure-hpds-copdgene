@@ -41,7 +41,7 @@ def get_access_group(groupnames):
         "name": "AR_FENCE_{}_only".format(groupnames),
         "description": 'Consent group{} {} only'.format( 's' if len(groupnames.split('-')) > 1 else '', ','.join(groupnames.split('-'))),
         "type": get_rule_type('ANY_CONTAINS'),
-        "rule": f"$..categoryFilters.['{concept_path_name}']",
+        "rule": "$..categoryFilters.['{}']".format(concept_path_name),
         "value": groupnames,
         "gates": [
             {"uuid": get_gate_uuid('gate_if_info_column_listing')},
@@ -79,7 +79,7 @@ def get_privilege(projectname, projectcode, groupcode, groupnames, key):
 
     # 'name': f'PRIV_FENCE_{projectcode}_{groupcode}',
     return {
-        'name': f'PRIV_{key}',
+        'name': "PRIV_{}".format(key),
         'description': 'View data in consent group{} {} of {} project.'.format(
             's' if len(groupnames.split('-')) > 1 else '',
             ','.join(groupnames.split('-')),
@@ -91,7 +91,7 @@ def get_privilege(projectname, projectcode, groupcode, groupnames, key):
 
 
 def main():
-    mapping_table = get_mapping_table(os.getenv('MAPPING_FILE'))
+    mapping_table = get_mapping_table('bdcatalyst_project_mapping.json')
 
     access_rule_list = []
     for i in mapping_table["projects"]:
