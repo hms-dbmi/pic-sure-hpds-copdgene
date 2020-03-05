@@ -1,0 +1,26 @@
+{
+	"resourceUUID": "__RESOURCE_ID__",
+	"query": {
+		"categoryFilters": {
+			"__CONSENT_GROUP_NAME__": [
+				"__CONSENT_GROUP_VALUE__"
+			]
+		},
+		"numericFilters": {
+		},
+		"requiredFields": [
+			"\\03 Clinical data\\Respiratory disease form\\04 Respiratory Conditions\\01 Asthma\\03 Asthma diagnosed by doctor or other health professional\\"
+		],
+		"variantInfoFilters": [
+			{
+				"categoryVariantInfoFilters": {
+				},
+				"numericVariantInfoFilters": {
+				}
+			}
+		],
+		"expectedResultType": "COUNT"
+	},
+	"resourceCredentials": {
+	}
+}

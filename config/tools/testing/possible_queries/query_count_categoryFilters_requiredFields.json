@@ -1,0 +1,30 @@
+{
+	"resourceUUID": "__RESOURCE_ID__",
+	"query": {
+		"categoryFilters": {
+			"\\_Consents\\Short Study Accession with Consent Code\\": [
+				"phs000179.c2",
+				"phs000179.c9"
+			],
+			"\\Genetic Epidemiology of COPD (COPDGene)\\Subject Phenotype\\Respiratory Disease\\Respiratory Conditions\\Asthma\\Asthma: have you ever had asthma\\": [
+				"Yes"
+			]
+		},
+		"numericFilters": {
+		},
+		"requiredFields": [
+
+		],
+		"variantInfoFilters": [
+			{
+				"categoryVariantInfoFilters": {
+				},
+				"numericVariantInfoFilters": {
+				}
+			}
+		],
+		"expectedResultType": "COUNT"
+	},
+	"resourceCredentials": {
+	}
+}

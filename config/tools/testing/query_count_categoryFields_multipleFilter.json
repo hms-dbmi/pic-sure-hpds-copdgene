@@ -1,0 +1,27 @@
+{
+	"resourceUUID": "__RESOURCE_ID__",
+	"query": {
+		"categoryFilters": {
+			"\\_Consents\\Short Study Accession with Consent Code\\": [  "phs001387.c3",  "phs000287.c4",  "phs001207.c1",  "phs000287.c2",  "phs000287.c3",  "phs000946.c1",  "phs000200.c1",  "phs000200.c2",  "phs001001.c2",  "phs000988.c1",  "phs000741.c1",  "phs001001.c1",  "phs000784.c1",  "phs001215.c1",  "phs001024.c1",  "phs000921.c2",  "phs000287.c1",  "phs000956.c2",  "phs000289.c1",  "phs001293.c1",  "phs001180.c2",  "phs001238.c1",  "phs001293.c2",  "phs000914.c1",  "phs000209.c2",  "phs001013.c1",  "phs001040.c1",  "phs000209.c1",  "phs000280.c2",  "phs000286.c3",  "phs000280.c1",  "phs000286.c4",  "phs000286.c1",  "phs000286.c2",  "phs000284.c1",  "phs001412.c2",  "phs001412.c1",  "phs000007.c1",  "phs000007.c2",  "phs001074.c2",  "phs001032.c1",  "phs000179.c1",  "phs000179.c2",  "phs001013.c2",  "phs001143.c1",  "phs000997.c1"],
+			"\\Genetic Epidemiology of COPD (COPDGene)\\Subject Phenotype\\Respiratory Disease\\Respiratory Conditions\\Asthma\\Asthma: have you ever had asthma\\": [
+				"Yes"
+			]
+		},
+		"numericFilters": {
+		},
+		"requiredFields": [
+
+		],
+		"variantInfoFilters": [
+			{
+				"categoryVariantInfoFilters": {
+				},
+				"numericVariantInfoFilters": {
+				}
+			}
+		],
+		"expectedResultType": "COUNT"
+	},
+	"resourceCredentials": {
+	}
+}

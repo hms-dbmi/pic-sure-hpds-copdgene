@@ -4,3 +4,5 @@ target/
 config/wildfly/deployments
 config/hpds
 
+search_full.json
+.env

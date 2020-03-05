@@ -1,0 +1,26 @@
+{
+	"resourceUUID": "__RESOURCE_ID__",
+	"query": {
+		"categoryFilters": {
+		},
+		"numericFilters": {
+		},
+		"requiredFields": [
+		],
+		"anyRecordOf": [
+
+		],
+		"variantInfoFilters": [
+			{
+				"categoryVariantInfoFilters": {
+				},
+				"numericVariantInfoFilters": {
+				}
+			}
+		],
+		"expectedResultType": "DATAFRAME",
+		"fields": [
+			"\\MGH Atrial Fibrillation Study\\Sociodemography and Adminstration\\Sociodemography\\Race of participant\\"
+		]
+	}
+}
