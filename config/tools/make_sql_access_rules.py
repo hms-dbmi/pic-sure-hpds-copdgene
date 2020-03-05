@@ -67,6 +67,15 @@ INSERT INTO `access_rule` VALUES (
 	0,1,NULL,0,0
 );
 
+INSERT INTO `access_rule` (`uuid`, `name`, `description`, `rule`, `type`, `value`, `checkMapKeyOnly`, `checkMapNode`, `subAccessRuleParent_uuid`, `isGateAnyRelation`, `isEvaluateOnlyByGates`)
+VALUES
+	(REPLACE(UUID(),'-',''),'GATE_BLOCK_INFOCOLUMNLISTING','INFO_COLUMN_LISTING will not pass the gate','$.query.query.expectedResultType',3,'INFO_COLUMN_LISTING',b'0',b'1',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'AR_NO_QUERY_ACCESS','Restrict to any query endpoints','$.['Target Service']',1,'/query',b'0',b'0',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'AR_ONLY_INFO','Can only do /query, /info and /search','$.['Target Service']',6,'/info',b'0',b'0',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'AR_ONLY_SEARCH','Can only do /query, /info and /search','$.['Target Service']',6,'/search',b'0',b'0',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'AR_ONLY_QUERY','Can only do /query, /info and /search','$.['Target Service']',6,'/query',b'0',b'0',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'GATE_EXPECTEDRESULTTYPE','has expected result type meaning normal query will not pass the gate','$.query.query',10,'expectedResultType',b'1',b'1',NULL,b'0',b'0'),
+	(REPLACE(UUID(),'-',''),'AR_ALLOW_INFOCOLUMNLISTING','allow query to info_column_listing','$.query.query.expectedResultType',4,'INFO_COLUMN_LISTING',b'0',b'1',NULL,b'0',b'0');
 
 """)
 
